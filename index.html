@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Anxiety & Trauma Mini-Study</title>
+  <title>AP Psych Mini-Lesson: Anxiety & Trauma Disorders</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -87,19 +87,19 @@
 
   <div id="app">
 
-    <!-- STEP 0: CONSENT + PARTICIPANT ID -->
+    <!-- PART 0: INTRO + PARTICIPANT ID -->
     <section id="welcome-section">
-      <h1>Anxiety & Trauma Mini-Lesson Study</h1>
+      <h1>AP Psych Mini-Lesson: Anxiety &amp; Trauma Disorders</h1>
       <p>
-        You will complete a short activity about stress and anxiety disorders:
+        This is a short practice module to help you get better at AP-style case questions on anxiety and trauma-related disorders.
       </p>
       <ul>
-        <li>Pre-test (5 case-based questions)</li>
-        <li>Online lesson (about 5–10 minutes)</li>
-        <li>Post-test (5 case-based questions)</li>
+        <li>Warm-up quiz (5 short case questions)</li>
+        <li>Guided lesson (about 5–10 minutes)</li>
+        <li>Practice quiz (5 short case questions)</li>
       </ul>
       <p class="small-note">
-        Your responses will be used for a class project on e-learning design. Please do not look anything up while answering.
+        Your answers will stay anonymous and will also help improve this lesson for future students. Please do not look anything up while answering.
       </p>
 
       <div class="q-block">
@@ -110,24 +110,23 @@
       <div class="q-block">
         <label>
           <input id="consent" type="checkbox" />
-          I understand the purpose of this activity and consent to my anonymized responses being used for analysis.
+          I understand this is a practice lesson and agree that my anonymous responses can be used to improve it.
         </label>
       </div>
 
       <button class="btn" id="start-btn" disabled>Start</button>
     </section>
 
-    <!-- STEP 1: PRETEST -->
+    <!-- PART 1: PRE / WARM-UP QUIZ -->
     <section id="pretest-section" class="hidden">
-      <span class="section-label">Step 1</span>
-      <h2>Pre-test</h2>
+      <span class="section-label">Part 1</span>
+      <h2>Warm-up Quiz</h2>
       <p>Please read each short case carefully and choose the best diagnosis. Use only the information given.</p>
 
-      <!-- IMPORTANT: wrap in a form -->
       <form id="pretest-form">
         <!-- Pre Q1 -->
         <div class="q-block">
-          <strong>Pre-Case 1</strong>
+          <strong>Case 1</strong>
           <p>
             For the past <strong>seven months</strong>, Maya has experienced constant worry about school, friendships, and her future.
             She reports muscle tension, difficulty sleeping, and irritability. The worry feels uncontrollable and is present “pretty much every day.”
@@ -143,7 +142,7 @@
 
         <!-- Pre Q2 -->
         <div class="q-block">
-          <strong>Pre-Case 2</strong>
+          <strong>Case 2</strong>
           <p>
             Three weeks after a home break-in, Liam has nightmares, avoids staying home alone, feels jumpy, and has trouble concentrating at work.
             His symptoms interfere with his functioning at school.
@@ -158,9 +157,9 @@
 
         <!-- Pre Q3 -->
         <div class="q-block">
-          <strong>Pre-Case 3</strong>
+          <strong>Case 3</strong>
           <p>
-            Olivia experiences sudden episodes of intense fear that peak within minutes, accompanied by sweating and shortness of breath.
+            Olivia experiences sudden episodes of intense fear that peak within minutes, with sweating and shortness of breath.
             These episodes occur <strong>without a clear trigger</strong>. She worries constantly about when the next one might happen and avoids
             crowded places “just in case.”
           </p>
@@ -174,7 +173,7 @@
 
         <!-- Pre Q4 -->
         <div class="q-block">
-          <strong>Pre-Case 4</strong>
+          <strong>Case 4</strong>
           <p>
             Leo’s anxiety occurs <strong>only when he must give presentations in class</strong>. He fears being judged, flushes and trembles when he speaks,
             and has skipped multiple classes to avoid presenting. Symptoms have been present for five months and impact grades.
@@ -189,7 +188,7 @@
 
         <!-- Pre Q5 open-ended -->
         <div class="q-block">
-          <strong>Pre-Case 5</strong>
+          <strong>Case 5</strong>
           <p>
             Two months after a serious bicycle accident, Priya experiences unwanted memories of the event, irritability, difficulty sleeping,
             and avoids riding her bike or taking the route where the accident occurred. These symptoms interfere with her school performance.
@@ -198,19 +197,18 @@
           <textarea name="pre_q5"></textarea>
         </div>
 
-        <button type="button" class="btn" id="pretest-next-btn">Next: Instruction</button>
+        <button type="button" class="btn" id="pretest-next-btn">Next: Lesson</button>
       </form>
     </section>
 
-    <!-- STEP 2A: BASELINE INSTRUCTION -->
+    <!-- PART 2A: BASELINE LESSON -->
     <section id="instruction-baseline" class="hidden">
-      <span class="section-label">Step 2</span>
-      <h2>Instruction (Version A)</h2>
+      <span class="section-label">Part 2</span>
+      <h2>Lesson: Anxiety &amp; Trauma-Related Disorders</h2>
       <p class="small-note">
-        This is a short textbook-style mini-lesson about anxiety and trauma-related disorders.
+        This is a short textbook-style mini-lesson on how to distinguish GAD, panic disorder, acute stress disorder, and PTSD.
       </p>
 
-      <!-- wrap in a form so FormData works -->
       <form id="instruction-baseline-form">
         <div class="q-block">
           <h3>Overview</h3>
@@ -266,19 +264,18 @@
           </div>
         </div>
 
-        <button type="button" class="btn" id="instruction-baseline-next-btn">Next: Post-test</button>
+        <button type="button" class="btn" id="instruction-baseline-next-btn">Next: Practice Quiz</button>
       </form>
     </section>
 
-    <!-- STEP 2B: SPECIAL SAUCE INSTRUCTION -->
+    <!-- PART 2B: SPECIAL SAUCE LESSON -->
     <section id="instruction-special" class="hidden">
-      <span class="section-label">Step 2</span>
-      <h2>Instruction (Version B)</h2>
+      <span class="section-label">Part 2</span>
+      <h2>Guided Lesson: Practicing Diagnostic Cues</h2>
       <p class="small-note">
-        This guided module will help you practice identifying diagnostic cues like duration, triggers, symptom patterns, and functional impairment.
+        In this version of the lesson, you’ll learn by working through guided and partially guided cases that highlight key diagnostic cues like duration, triggers, symptom patterns, and functional impairment.
       </p>
 
-      <!-- wrap special instruction in a form -->
       <form id="instruction-special-form">
         <!-- Cue intro -->
         <div class="q-block">
@@ -372,7 +369,7 @@
             <textarea id="c2-selfex" name="instB_c2_selfex"></textarea>
             <p><strong>Expert reasoning:</strong></p>
             <p class="small-note">
-              Long duration (>6 months), no discrete trauma, and broad, uncontrollable worry across multiple domains are the core cues for GAD.
+              Long duration (&gt; 6 months), no discrete trauma, and broad, uncontrollable worry across multiple domains are the core cues for GAD.
             </p>
           </div>
         </div>
@@ -402,21 +399,20 @@
           <textarea id="c3-selfex" name="instB_c3_selfex"></textarea>
         </div>
 
-        <button type="button" class="btn" id="instruction-special-next-btn">Next: Post-test</button>
+        <button type="button" class="btn" id="instruction-special-next-btn">Next: Practice Quiz</button>
       </form>
     </section>
 
-    <!-- STEP 3: POSTTEST -->
+    <!-- PART 3: POST / PRACTICE QUIZ -->
     <section id="posttest-section" class="hidden">
-      <span class="section-label">Step 3</span>
-      <h2>Post-test</h2>
+      <span class="section-label">Part 3</span>
+      <h2>Practice Quiz</h2>
       <p>Again, choose the best diagnosis for each case based only on the information provided.</p>
 
-      <!-- wrap in form -->
       <form id="posttest-form">
         <!-- Post Q1 -->
         <div class="q-block">
-          <strong>Post-Case 1</strong>
+          <strong>Case 1</strong>
           <p>
             For the last <strong>six months</strong>, Daniel has experienced persistent worry about academic deadlines, relationships, finances, and future plans. 
             He reports being “on edge every day,” with muscle tension and restlessness. The worry is difficult for him to control.
@@ -431,7 +427,7 @@
 
         <!-- Post Q2 -->
         <div class="q-block">
-          <strong>Post-Case 2</strong>
+          <strong>Case 2</strong>
           <p>
             Ten days after witnessing a violent fight at a party, Jordan experiences intrusive memories, is easily startled, avoids social gatherings, and has difficulty sleeping. 
             Symptoms significantly interfere with school.
@@ -446,7 +442,7 @@
 
         <!-- Post Q3 -->
         <div class="q-block">
-          <strong>Post-Case 3</strong>
+          <strong>Case 3</strong>
           <p>
             Sara reports experiencing several sudden panic surges in the last month. They peak rapidly and occur unexpectedly.
             She now avoids traveling alone and frequently monitors her body for signs of another attack. No trauma is mentioned.
@@ -461,7 +457,7 @@
 
         <!-- Post Q4 -->
         <div class="q-block">
-          <strong>Post-Case 4</strong>
+          <strong>Case 4</strong>
           <p>
             Emilia has been intensely afraid of taking flights for over a year. The fear is immediate whenever she thinks about flying. 
             She avoids travel and missed a family trip due to this fear. Symptoms occur only in relation to flying and cause functional impairment.
@@ -476,7 +472,7 @@
 
         <!-- Post Q5 -->
         <div class="q-block">
-          <strong>Post-Case 5</strong>
+          <strong>Case 5</strong>
           <p>
             A month and a half after a near-drowning incident, Marcus experiences repeated intrusive memories, avoids pools, 
             has trouble sleeping, and has difficulty concentrating in class. Symptoms impair his daily functioning.
@@ -493,7 +489,7 @@
   </div>
 
   <script>
-    const DATA_ENDPOINT = "YOUR_DATA_ENDPOINT_HERE"; // <-- replace with your POST URL
+    const DATA_ENDPOINT = "https://script.google.com/macros/s/AKfycbxPzDgnDddCYiNI2UVS85MiT7fQ1rFT3hEuq31CeZQbcxTambqfPcmDrKfwQTSQzweF6g/exec";
 
     const state = {
       participantId: null,
@@ -505,7 +501,8 @@
       process: {
         c2_attempts: 0,
         c3_hint_used: false
-      }
+      },
+      instB_c2_diag: null
     };
 
     // Elements
@@ -583,11 +580,8 @@
     }
 
     pretestNextBtn.addEventListener("click", () => {
-      // store pretest answers
       const formData = new FormData(pretestForm);
       state.pretest = Object.fromEntries(formData.entries());
-
-      // we only compute scores after posttest so we have both
 
       pretestSection.classList.add("hidden");
 
@@ -608,7 +602,6 @@
     instSpecialNextBtn.addEventListener("click", () => {
       const formData = new FormData(instSpecialForm);
       const instAnswers = Object.fromEntries(formData.entries());
-      // Add process metrics
       instAnswers.c2_diag_attempt = state.instB_c2_diag || null;
       instAnswers.c2_self_explanation = c2SelfExTextarea.value || "";
       instAnswers.c3_self_explanation = c3SelfExTextarea.value || "";
@@ -619,8 +612,6 @@
     });
 
     // Special-sauce: Case 2 corrective cycle
-    state.instB_c2_diag = null;
-
     c2SubmitBtn.addEventListener("click", () => {
       const radios = document.querySelectorAll("input[name='instB_c2_diag']");
       let chosen = null;
@@ -642,7 +633,6 @@
         c2SelfExBlock.classList.remove("hidden");
         c2SubmitBtn.disabled = true;
       } else {
-        // Provide a simple nudge (not exposing full explanation)
         if (chosen === "PTSD" || chosen === "ASD") {
           c2FeedbackDiv.textContent = "Hint: Think about whether there is a trauma and look at how long the symptoms have lasted.";
         } else {
@@ -687,13 +677,6 @@
       submitAllBtn.disabled = true;
 
       try {
-        if (DATA_ENDPOINT === "YOUR_DATA_ENDPOINT_HERE") {
-          // Dev fallback: just log
-          console.log("DATA_ENDPOINT not configured. Payload:", payload);
-          submitStatus.textContent = "Data logged to console (no endpoint configured). You can now close this page.";
-          return;
-        }
-
         const res = await fetch(DATA_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -704,7 +687,7 @@
           throw new Error("Non-OK response");
         }
 
-        submitStatus.textContent = "Thank you! Your responses have been submitted.";
+        submitStatus.textContent = "Thank you! Your responses have been submitted. You can now close this page.";
       } catch (err) {
         console.error(err);
         submitStatus.textContent =
