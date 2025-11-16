@@ -81,6 +81,21 @@
       margin-bottom: 0.3rem;
       display: block;
     }
+    .cue-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .cue-table th,
+    .cue-table td {
+      border: 1px solid #ddd;
+      padding: 0.35rem;
+      vertical-align: top;
+    }
+    .cue-table th {
+      background: #f3f6ff;
+    }
   </style>
 </head>
 <body>
@@ -277,6 +292,48 @@
       </p>
 
       <form id="instruction-special-form">
+        <!-- Disorders table -->
+        <div class="q-block">
+          <h3>Key Disorders &amp; Cues (Quick Reference)</h3>
+          <p class="small-note">You can glance at this table while you work through the guided cases.</p>
+          <table class="cue-table">
+            <thead>
+              <tr>
+                <th>Disorder</th>
+                <th>Trigger</th>
+                <th>Duration</th>
+                <th>Core pattern</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>GAD</strong></td>
+                <td>No single trauma; worry about many areas (school, family, future)</td>
+                <td>&gt;= 6 months, most days</td>
+                <td>Broad, uncontrollable worry + physical symptoms (tension, sleep issues)</td>
+              </tr>
+              <tr>
+                <td><strong>Panic Disorder</strong></td>
+                <td>Often no clear trigger; unexpected panic attacks</td>
+                <td>Recurrent attacks + &gt;= 1 month concern/behavior change</td>
+                <td>Sudden fear surges + fear of future attacks, avoidance “just in case”</td>
+              </tr>
+              <tr>
+                <td><strong>Acute Stress Disorder (ASD)</strong></td>
+                <td>Clear trauma (accident, assault, disaster, etc.)</td>
+                <td>3 days–1 month after trauma</td>
+                <td>Intrusions, avoidance, negative mood, arousal soon after trauma</td>
+              </tr>
+              <tr>
+                <td><strong>PTSD</strong></td>
+                <td>Clear trauma</td>
+                <td>&gt; 1 month after trauma</td>
+                <td>Intrusions, avoidance, negative mood, arousal + functional impairment</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- Cue intro -->
         <div class="q-block">
           <h3>Key Cues (Quick Intro)</h3>
@@ -489,218 +546,216 @@
   </div>
 
   <script>
-  const DATA_ENDPOINT = "https://script.google.com/macros/s/AKfycbxPzDgnDddCYiNI2UVS85MiT7fQ1rFT3hEuq31CeZQbcxTambqfPcmDrKfwQTSQzweF6g/exec";
+    const DATA_ENDPOINT = "https://script.google.com/macros/s/AKfycbxPzDgnDddCYiNI2UVS85MiT7fQ1rFT3hEuq31CeZQbcxTambqfPcmDrKfwQTSQzweF6g/exec";
 
-  const state = {
-    participantId: null,
-    condition: null, // "baseline" or "special_sauce"
-    pretest: {},
-    instruction: {},
-    posttest: {},
-    scores: {},
-    process: {
-      c2_attempts: 0,
-      c3_hint_used: false
-    },
-    instB_c2_diag: null
-  };
+    const state = {
+      participantId: null,
+      condition: null, // "baseline" or "special_sauce"
+      pretest: {},
+      instruction: {},
+      posttest: {},
+      scores: {},
+      process: {
+        c2_attempts: 0,
+        c2_attempt_history: [],
+        c3_hint_used: false
+      },
+      instB_c2_diag: null
+    };
 
-  // Elements
-  const consentCheckbox = document.getElementById("consent");
-  const pidInput = document.getElementById("pid");
-  const startBtn = document.getElementById("start-btn");
+    // Elements
+    const consentCheckbox = document.getElementById("consent");
+    const pidInput = document.getElementById("pid");
+    const startBtn = document.getElementById("start-btn");
 
-  const welcomeSection = document.getElementById("welcome-section");
-  const pretestSection = document.getElementById("pretest-section");
-  const pretestNextBtn = document.getElementById("pretest-next-btn");
+    const welcomeSection = document.getElementById("welcome-section");
+    const pretestSection = document.getElementById("pretest-section");
+    const pretestNextBtn = document.getElementById("pretest-next-btn");
 
-  const instBaselineSection = document.getElementById("instruction-baseline");
-  const instBaselineNextBtn = document.getElementById("instruction-baseline-next-btn");
+    const instBaselineSection = document.getElementById("instruction-baseline");
+    const instBaselineNextBtn = document.getElementById("instruction-baseline-next-btn");
 
-  const instSpecialSection = document.getElementById("instruction-special");
-  const instSpecialNextBtn = document.getElementById("instruction-special-next-btn");
+    const instSpecialSection = document.getElementById("instruction-special");
+    const instSpecialNextBtn = document.getElementById("instruction-special-next-btn");
 
-  const posttestSection = document.getElementById("posttest-section");
-  const submitAllBtn = document.getElementById("submit-all-btn");
-  const submitStatus = document.getElementById("submit-status");
+    const posttestSection = document.getElementById("posttest-section");
+    const submitAllBtn = document.getElementById("submit-all-btn");
+    const submitStatus = document.getElementById("submit-status");
 
-  const pretestForm = document.getElementById("pretest-form");
-  const posttestForm = document.getElementById("posttest-form");
-  const instBaselineForm = document.getElementById("instruction-baseline-form");
-  const instSpecialForm = document.getElementById("instruction-special-form");
+    const pretestForm = document.getElementById("pretest-form");
+    const posttestForm = document.getElementById("posttest-form");
+    const instBaselineForm = document.getElementById("instruction-baseline-form");
+    const instSpecialForm = document.getElementById("instruction-special-form");
 
-  // Special-sauce interactive elements
-  const c2SubmitBtn = document.getElementById("c2-submit-btn");
-  const c2FeedbackDiv = document.getElementById("c2-feedback");
-  const c2SelfExBlock = document.getElementById("c2-selfex-block");
-  const c2SelfExTextarea = document.getElementById("c2-selfex");
+    // Special-sauce interactive elements
+    const c2SubmitBtn = document.getElementById("c2-submit-btn");
+    const c2FeedbackDiv = document.getElementById("c2-feedback");
+    const c2SelfExBlock = document.getElementById("c2-selfex-block");
+    const c2SelfExTextarea = document.getElementById("c2-selfex");
 
-  const c3HintBtn = document.getElementById("c3-hint-btn");
-  const c3HintDiv = document.getElementById("c3-hint");
-  const c3SelfExTextarea = document.getElementById("c3-selfex");
+    const c3HintBtn = document.getElementById("c3-hint-btn");
+    const c3HintDiv = document.getElementById("c3-hint");
+    const c3SelfExTextarea = document.getElementById("c3-selfex");
 
-  // TRACKING for special-sauce
-  let c2Attempts = 0;
-  const c2Correct = "GAD";
+    // TRACKING for special-sauce
+    let c2Attempts = 0;
+    const c2Correct = "GAD";
 
-  // Enable Start button only if consent is checked
-  function updateStartButton() {
-    const hasConsent = consentCheckbox.checked;
-    startBtn.disabled = !hasConsent;
-  }
-
-  consentCheckbox.addEventListener("change", updateStartButton);
-
-  startBtn.addEventListener("click", () => {
-    state.participantId = pidInput.value.trim() || null;
-    // Random assignment to condition
-    state.condition = Math.random() < 0.5 ? "baseline" : "special_sauce";
-    console.log("Assigned condition:", state.condition);
-    welcomeSection.classList.add("hidden");
-    pretestSection.classList.remove("hidden");
-  });
-
-  // Helper: compute pretest / posttest scores (MCQs only)
-  function computePreScore(pre) {
-    let score = 0;
-    if (pre.pre_q1 === "GAD") score++;
-    if (pre.pre_q2 === "ASD") score++;
-    if (pre.pre_q3 === "Panic Disorder") score++;
-    if (pre.pre_q4 === "Social Anxiety Disorder") score++;
-    return score;
-  }
-
-  function computePostScore(post) {
-    let score = 0;
-    if (post.post_q1 === "GAD") score++;
-    if (post.post_q2 === "ASD") score++;
-    if (post.post_q3 === "Panic") score++;
-    if (post.post_q4 === "Specific Phobia") score++;
-    return score;
-  }
-
-  pretestNextBtn.addEventListener("click", () => {
-    const formData = new FormData(pretestForm);
-    state.pretest = Object.fromEntries(formData.entries());
-
-    pretestSection.classList.add("hidden");
-
-    if (state.condition === "baseline") {
-      instBaselineSection.classList.remove("hidden");
-    } else {
-      instSpecialSection.classList.remove("hidden");
-    }
-  });
-
-  instBaselineNextBtn.addEventListener("click", () => {
-    const formData = new FormData(instBaselineForm);
-    state.instruction = Object.fromEntries(formData.entries());
-    instBaselineSection.classList.add("hidden");
-    posttestSection.classList.remove("hidden");
-  });
-
-  instSpecialNextBtn.addEventListener("click", () => {
-    const formData = new FormData(instSpecialForm);
-    const instAnswers = Object.fromEntries(formData.entries());
-    instAnswers.c2_diag_attempt = state.instB_c2_diag || null;
-    instAnswers.c2_self_explanation = c2SelfExTextarea.value || "";
-    instAnswers.c3_self_explanation = c3SelfExTextarea.value || "";
-    state.instruction = instAnswers;
-
-    instSpecialSection.classList.add("hidden");
-    posttestSection.classList.remove("hidden");
-  });
-
-  // Special-sauce: Case 2 corrective cycle
-  c2SubmitBtn.addEventListener("click", () => {
-    const radios = document.querySelectorAll("input[name='instB_c2_diag']");
-    let chosen = null;
-    radios.forEach(r => { if (r.checked) chosen = r.value; });
-
-    if (!chosen) {
-      c2FeedbackDiv.textContent = "Please select an option before submitting.";
-      c2FeedbackDiv.classList.remove("hidden");
-      return;
+    // Enable Start button only if consent is checked
+    function updateStartButton() {
+      const hasConsent = consentCheckbox.checked;
+      startBtn.disabled = !hasConsent;
     }
 
-    c2Attempts += 1;
-    state.process.c2_attempts = c2Attempts;
-    state.instB_c2_diag = chosen;
+    consentCheckbox.addEventListener("change", updateStartButton);
 
-    if (chosen === c2Correct) {
-      c2FeedbackDiv.textContent = "Correct. Now explain your reasoning below.";
-      c2FeedbackDiv.classList.remove("hidden");
-      c2SelfExBlock.classList.remove("hidden");
-      c2SubmitBtn.disabled = true;
-    } else {
-      if (chosen === "PTSD" || chosen === "ASD") {
-        c2FeedbackDiv.textContent = "Hint: Think about whether there is a trauma and look at how long the symptoms have lasted.";
+    startBtn.addEventListener("click", () => {
+      state.participantId = pidInput.value.trim() || null;
+      // Random assignment to condition
+      state.condition = Math.random() < 0.5 ? "baseline" : "special_sauce";
+      console.log("Assigned condition:", state.condition);
+      welcomeSection.classList.add("hidden");
+      pretestSection.classList.remove("hidden");
+    });
+
+    // Helper: compute pretest / posttest scores (MCQs only)
+    function computePreScore(pre) {
+      let score = 0;
+      if (pre.pre_q1 === "GAD") score++;
+      if (pre.pre_q2 === "ASD") score++;
+      if (pre.pre_q3 === "Panic Disorder") score++;
+      if (pre.pre_q4 === "Social Anxiety Disorder") score++;
+      return score;
+    }
+
+    function computePostScore(post) {
+      let score = 0;
+      if (post.post_q1 === "GAD") score++;
+      if (post.post_q2 === "ASD") score++;
+      if (post.post_q3 === "Panic") score++;
+      if (post.post_q4 === "Specific Phobia") score++;
+      return score;
+    }
+
+    pretestNextBtn.addEventListener("click", () => {
+      const formData = new FormData(pretestForm);
+      state.pretest = Object.fromEntries(formData.entries());
+
+      pretestSection.classList.add("hidden");
+
+      if (state.condition === "baseline") {
+        instBaselineSection.classList.remove("hidden");
       } else {
-        c2FeedbackDiv.textContent = "Hint: Consider whether the worry is broad and long-lasting, or tied to a specific event.";
+        instSpecialSection.classList.remove("hidden");
       }
-      c2FeedbackDiv.classList.remove("hidden");
-    }
-  });
+    });
 
-  // Special-sauce: Case 3 hint
-  c3HintBtn.addEventListener("click", () => {
-    c3HintDiv.classList.remove("hidden");
-    state.process.c3_hint_used = true;
-  });
+    instBaselineNextBtn.addEventListener("click", () => {
+      const formData = new FormData(instBaselineForm);
+      state.instruction = Object.fromEntries(formData.entries());
+      instBaselineSection.classList.add("hidden");
+      posttestSection.classList.remove("hidden");
+    });
 
-  // Final submit
-  submitAllBtn.addEventListener("click", async () => {
-    const formData = new FormData(posttestForm);
-    state.posttest = Object.fromEntries(formData.entries());
+    instSpecialNextBtn.addEventListener("click", () => {
+      const formData = new FormData(instSpecialForm);
+      const instAnswers = Object.fromEntries(formData.entries());
+      instAnswers.c2_diag_attempt = state.instB_c2_diag || null;
+      instAnswers.c2_self_explanation = c2SelfExTextarea.value || "";
+      instAnswers.c3_self_explanation = c3SelfExTextarea.value || "";
+      state.instruction = instAnswers;
 
-    // Compute scores
-    const preScore = computePreScore(state.pretest);
-    const postScore = computePostScore(state.posttest);
-    state.scores = {
-      pre_mcq: preScore,
-      post_mcq: postScore,
-      gain_mcq: postScore - preScore
-    };
+      instSpecialSection.classList.add("hidden");
+      posttestSection.classList.remove("hidden");
+    });
 
-    const payload = {
-      timestamp: new Date().toISOString(),
-      participantId: state.participantId,
-      condition: state.condition,
-      pretest: state.pretest,
-      instruction: state.instruction,
-      posttest: state.posttest,
-      scores: state.scores,
-      process: state.process
-    };
+    // Special-sauce: Case 2 corrective cycle
+    c2SubmitBtn.addEventListener("click", () => {
+      const radios = document.querySelectorAll("input[name='instB_c2_diag']");
+      let chosen = null;
+      radios.forEach(r => { if (r.checked) chosen = r.value; });
 
-    console.log("Submitting payload:", payload);
-    submitStatus.textContent = "Submitting...";
-    submitAllBtn.disabled = true;
+      if (!chosen) {
+        c2FeedbackDiv.textContent = "Please select an option before submitting.";
+        c2FeedbackDiv.classList.remove("hidden");
+        return;
+      }
 
-    try {
-      // Fire-and-forget: avoid CORS preflight issues with no-cors + text/plain
-      await fetch(DATA_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        body: JSON.stringify(payload)
-      });
+      c2Attempts += 1;
+      state.process.c2_attempts = c2Attempts;
+      state.process.c2_attempt_history.push(chosen);
+      state.instB_c2_diag = chosen;
 
-      // We can't see the response in no-cors mode, but the request
-      // will still be sent to Apps Script.
-      submitStatus.textContent =
-        "Thank you! Your responses have been submitted. You can now close this page.";
-    } catch (err) {
-      console.error("Network error during submit:", err);
-      submitStatus.textContent =
-        "There was a network error while submitting. Please screenshot this page and let the instructor know.";
-      submitAllBtn.disabled = false;
-    }
-  });
+      if (chosen === c2Correct) {
+        c2FeedbackDiv.textContent = "Correct. Now explain your reasoning below.";
+        c2FeedbackDiv.classList.remove("hidden");
+        c2SelfExBlock.classList.remove("hidden");
+        c2SubmitBtn.disabled = true;
+      } else {
+        if (chosen === "PTSD" || chosen === "ASD") {
+          c2FeedbackDiv.textContent = "Hint: Think about whether there is a trauma and look at how long the symptoms have lasted.";
+        } else {
+          c2FeedbackDiv.textContent = "Hint: Consider whether the worry is broad and long-lasting, or tied to a specific event.";
+        }
+        c2FeedbackDiv.classList.remove("hidden");
+      }
+    });
 
-</script>
+    // Special-sauce: Case 3 hint
+    c3HintBtn.addEventListener("click", () => {
+      c3HintDiv.classList.remove("hidden");
+      state.process.c3_hint_used = true;
+    });
 
+    // Final submit
+    submitAllBtn.addEventListener("click", async () => {
+      const formData = new FormData(posttestForm);
+      state.posttest = Object.fromEntries(formData.entries());
+
+      // Compute scores
+      const preScore = computePreScore(state.pretest);
+      const postScore = computePostScore(state.posttest);
+      state.scores = {
+        pre_mcq: preScore,
+        post_mcq: postScore,
+        gain_mcq: postScore - preScore
+      };
+
+      const payload = {
+        timestamp: new Date().toISOString(),
+        participantId: state.participantId,
+        condition: state.condition,
+        pretest: state.pretest,
+        instruction: state.instruction,
+        posttest: state.posttest,
+        scores: state.scores,
+        process: state.process
+      };
+
+      console.log("Submitting payload:", payload);
+      submitStatus.textContent = "Submitting...";
+      submitAllBtn.disabled = true;
+
+      try {
+        // Fire-and-forget: avoid CORS preflight issues
+        await fetch(DATA_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        submitStatus.textContent =
+          "Thank you! Your responses have been submitted. You can now close this page.";
+      } catch (err) {
+        console.error("Network error during submit:", err);
+        submitStatus.textContent =
+          "There was a network error while submitting. Please screenshot this page and let the instructor know.";
+        submitAllBtn.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
