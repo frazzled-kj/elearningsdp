@@ -200,15 +200,19 @@
           </div>
         </div>
 
-        <!-- Pre Q5 open-ended -->
+        <!-- Pre Q5 -->
         <div class="q-block">
           <strong>Case 5</strong>
           <p>
             Two months after a serious bicycle accident, Priya experiences unwanted memories of the event, irritability, difficulty sleeping,
             and avoids riding her bike or taking the route where the accident occurred. These symptoms interfere with her school performance.
           </p>
-          <p><em>What is the most likely diagnosis, and which two cues support your conclusion?</em></p>
-          <textarea name="pre_q5"></textarea>
+          <div class="options">
+            <label><input type="radio" name="pre_q5" value="GAD" /> GAD</label>
+            <label><input type="radio" name="pre_q5" value="Panic Disorder" /> Panic Disorder</label>
+            <label><input type="radio" name="pre_q5" value="ASD" /> Acute Stress Disorder</label>
+            <label><input type="radio" name="pre_q5" value="PTSD" /> PTSD</label>
+          </div>
         </div>
 
         <button type="button" class="btn" id="pretest-next-btn">Next: Lesson</button>
@@ -225,7 +229,7 @@
 
       <form id="instruction-baseline-form">
         <div class="q-block">
-          <h3>Overview</h3>
+          <h3>Overview: Stress and Anxiety Disorders</h3>
           <p>
             Stress is the process by which we perceive and respond to events we appraise as threatening or challenging.
             Anxiety disorders involve excessive fear or anxiety that is difficult to control and causes distress or impairment.
@@ -236,32 +240,64 @@
             associated with restlessness, fatigue, difficulty concentrating, irritability, muscle tension, or sleep disturbance.
           </p>
           <p>
-            Panic Disorder involves recurrent, unexpected panic attacks along with persistent concern or behavior change
-            lasting at least one month after the attacks.
+            Panic Disorder involves recurrent, unexpected panic attacks, along with persistent concern or behavior change
+            lasting at least one month after the attacks. Panic attacks are abrupt surges of intense fear that reach a peak
+            within minutes and include physical symptoms such as heart palpitations or shortness of breath.
           </p>
           <p>
             Acute Stress Disorder (ASD) involves symptoms that begin after a traumatic event and last from three days to one month.
             Symptoms can include intrusive memories, negative mood, dissociation, avoidance, and arousal.
           </p>
           <p>
-            Post-Traumatic Stress Disorder (PTSD) involves exposure to actual or threatened death, serious injury, or sexual violence;
-            intrusive symptoms; avoidance; negative changes in cognition and mood; and arousal changes. Duration is more than one month
-            and symptoms cause functional impairment.
+            Post-Traumatic Stress Disorder (PTSD) involves exposure to actual or threatened death, serious injury, or sexual violence,
+            followed by intrusive symptoms, avoidance, negative changes in cognition and mood, and arousal changes.
+            Duration is more than one month and symptoms cause functional impairment.
           </p>
         </div>
 
+        <!-- Worked example 1 -->
         <div class="q-block">
-          <h3>Worked Example</h3>
+          <h3>Worked Example 1</h3>
           <p>
             Maria was in a car accident two weeks ago. Since then, she has intrusive memories, difficulty sleeping, and irritability.
             Her symptoms began soon after the trauma and have lasted for under one month.
           </p>
           <p>
             Analysis: Because these symptoms began after a traumatic event and have lasted less than one month,
-            this pattern is more consistent with acute stress disorder than PTSD.
+            this pattern is consistent with acute stress disorder rather than PTSD.
           </p>
         </div>
 
+        <!-- Worked example 2 -->
+        <div class="q-block">
+          <h3>Worked Example 2</h3>
+          <p>
+            For the past eight months, Amir has felt on edge most days. He worries about grades, his parents' health,
+            friendships, and money. He reports muscle tension and difficulty sleeping, and says he “cannot turn off” the worry.
+            There was no single traumatic event that started these symptoms.
+          </p>
+          <p>
+            Analysis: The long duration (more than six months), broad range of worries, and lack of a specific trauma
+            point toward generalized anxiety disorder. The key cues are chronic, uncontrollable worry about many domains
+            and physical symptoms such as muscle tension and sleep problems.
+          </p>
+        </div>
+
+        <!-- Worked example 3 -->
+        <div class="q-block">
+          <h3>Worked Example 3</h3>
+          <p>
+            Over the past month, Jordan has had several sudden episodes of intense fear that peak within minutes.
+            During these episodes, Jordan feels short of breath, dizzy, and fears losing control. The episodes occur unexpectedly,
+            and Jordan now avoids crowded spaces and worries about having another attack.
+          </p>
+          <p>
+            Analysis: The abrupt, unexpected surges of fear, plus ongoing fear of future attacks and avoidance,
+            match the pattern of panic disorder more than GAD or trauma-related disorders.
+          </p>
+        </div>
+
+        <!-- Practice check: 4 cases -->
         <div class="q-block">
           <h3>Practice Check</h3>
 
@@ -285,6 +321,27 @@
             <label><input type="radio" name="instA_q2" value="ASD" /> Acute Stress Disorder</label>
             <label><input type="radio" name="instA_q2" value="PTSD" /> PTSD</label>
           </div>
+
+          <p><strong>Case C.</strong> For the past seven months, Noor has experienced near-daily worry about school performance,
+            family, and future plans. She feels restless, has difficulty concentrating, and reports that the worry feels uncontrollable.
+            No clear traumatic event is mentioned.</p>
+          <p>Which diagnosis best fits?</p>
+          <div class="options">
+            <label><input type="radio" name="instA_q3" value="GAD" /> GAD</label>
+            <label><input type="radio" name="instA_q3" value="Panic Disorder" /> Panic Disorder</label>
+            <label><input type="radio" name="instA_q3" value="ASD" /> Acute Stress Disorder</label>
+            <label><input type="radio" name="instA_q3" value="PTSD" /> PTSD</label>
+          </div>
+
+          <p><strong>Case D.</strong> Ten days after a serious car crash, Evan has intrusive memories of the crash,
+            trouble sleeping, and avoids riding in cars. These symptoms interfere with his daily life.</p>
+          <p>Which diagnosis best fits?</p>
+          <div class="options">
+            <label><input type="radio" name="instA_q4" value="ASD" /> Acute Stress Disorder</label>
+            <label><input type="radio" name="instA_q4" value="PTSD" /> PTSD</label>
+            <label><input type="radio" name="instA_q4" value="GAD" /> GAD</label>
+            <label><input type="radio" name="instA_q4" value="Panic Disorder" /> Panic Disorder</label>
+          </div>
         </div>
 
         <button type="button" class="btn" id="instruction-baseline-next-btn">Next: Practice Quiz</button>
@@ -296,13 +353,13 @@
       <span class="section-label">Part 2</span>
       <h2>Guided Lesson: Practicing Diagnostic Cues</h2>
       <p class="small-note">
-        In this version of the lesson, you’ll learn by working through guided and partially guided cases that highlight key diagnostic cues like duration, triggers, symptom patterns, and functional impairment.
+        In this version of the lesson, you will learn by working through guided and partially guided cases that highlight key diagnostic cues like duration, triggers, symptom patterns, and functional impairment.
       </p>
 
       <form id="instruction-special-form">
         <!-- Disorders × cues table ONLY -->
         <div class="q-block">
-          <h3>Key Disorders & Cues (Reference Table)</h3>
+          <h3>Key Disorders and Cues (Reference Table)</h3>
           <table class="cue-table">
             <thead>
               <tr>
@@ -341,7 +398,7 @@
           </table>
         </div>
 
-        <!-- Case 1: fully annotated worked example -->
+        <!-- Case 1: fully annotated -->
         <div class="q-block">
           <h3>Case 1 – Guided Example</h3>
           <p class="small-note">This first case is annotated to show you which details are diagnostically important.</p>
@@ -356,7 +413,7 @@
           <div class="options">
             <label>How long have Jamie’s symptoms lasted?
               <select name="instB_c1_dur">
-                <option value="">Select…</option>
+                <option value="">Select...</option>
                 <option value="2_weeks">2 weeks</option>
                 <option value="2_months">2 months</option>
                 <option value="8_months">8 months</option>
@@ -366,16 +423,16 @@
           <div class="options">
             <label>Is there a traumatic event?
               <select name="instB_c1_trig">
-                <option value="">Select…</option>
+                <option value="">Select...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </label>
           </div>
           <div class="options">
-            <label>Is her functioning impacted (school/work/etc.)?
+            <label>Is her functioning impacted?
               <select name="instB_c1_impair">
-                <option value="">Select…</option>
+                <option value="">Select...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
@@ -391,7 +448,7 @@
           </div>
         </div>
 
-        <!-- Case 2: partial fading with prediction & feedback cycle -->
+        <!-- Case 2: prediction + feedback cycle -->
         <div class="q-block" id="special-case2">
           <h3>Case 2 – Your Turn (Partial Support)</h3>
           <p>
@@ -426,7 +483,7 @@
           </div>
         </div>
 
-        <!-- Case 3: no annotations, hint option -->
+        <!-- Case 3: less support + hint option -->
         <div class="q-block">
           <h3>Case 3 – Less Support (Hint Available)</h3>
           <p>
@@ -529,8 +586,12 @@
             A month and a half after a near-drowning incident, Marcus experiences repeated intrusive memories, avoids pools, 
             has trouble sleeping, and has difficulty concentrating in class. Symptoms impair his daily functioning.
           </p>
-          <p><em>What is the most likely diagnosis? List two cues that led you to this answer.</em></p>
-          <textarea name="post_q5"></textarea>
+          <div class="options">
+            <label><input type="radio" name="post_q5" value="GAD" /> GAD</label>
+            <label><input type="radio" name="post_q5" value="Panic Disorder" /> Panic Disorder</label>
+            <label><input type="radio" name="post_q5" value="ASD" /> Acute Stress Disorder</label>
+            <label><input type="radio" name="post_q5" value="PTSD" /> PTSD</label>
+          </div>
         </div>
 
         <button type="button" class="btn" id="submit-all-btn">Submit</button>
@@ -554,6 +615,14 @@
         c2_attempts: 0,
         c2_attempt_history: [],
         c3_hint_used: false
+      },
+      timing: {
+        pre_start: null,
+        pre_end: null,
+        instruction_start: null,
+        instruction_end: null,
+        post_start: null,
+        post_end: null
       },
       instB_c2_diag: null
     };
@@ -602,6 +671,7 @@
       state.participantId = pidInput.value.trim() || null;
       state.condition = Math.random() < 0.5 ? "baseline" : "special_sauce";
       console.log("Assigned condition:", state.condition);
+      state.timing.pre_start = new Date().toISOString();
       welcomeSection.classList.add("hidden");
       pretestSection.classList.remove("hidden");
     });
@@ -612,6 +682,7 @@
       if (pre.pre_q2 === "ASD") score++;
       if (pre.pre_q3 === "Panic Disorder") score++;
       if (pre.pre_q4 === "PTSD") score++;
+      if (pre.pre_q5 === "PTSD") score++;
       return score;
     }
 
@@ -621,12 +692,16 @@
       if (post.post_q2 === "ASD") score++;
       if (post.post_q3 === "Panic") score++;
       if (post.post_q4 === "PTSD") score++;
+      if (post.post_q5 === "PTSD") score++;
       return score;
     }
 
     pretestNextBtn.addEventListener("click", () => {
       const formData = new FormData(pretestForm);
       state.pretest = Object.fromEntries(formData.entries());
+
+      state.timing.pre_end = new Date().toISOString();
+      state.timing.instruction_start = new Date().toISOString();
 
       pretestSection.classList.add("hidden");
       if (state.condition === "baseline") {
@@ -639,6 +714,10 @@
     instBaselineNextBtn.addEventListener("click", () => {
       const formData = new FormData(instBaselineForm);
       state.instruction = Object.fromEntries(formData.entries());
+
+      state.timing.instruction_end = new Date().toISOString();
+      state.timing.post_start = new Date().toISOString();
+
       instBaselineSection.classList.add("hidden");
       posttestSection.classList.remove("hidden");
     });
@@ -650,6 +729,9 @@
       instAnswers.c2_self_explanation = c2SelfExTextarea.value || "";
       instAnswers.c3_self_explanation = c3SelfExTextarea.value || "";
       state.instruction = instAnswers;
+
+      state.timing.instruction_end = new Date().toISOString();
+      state.timing.post_start = new Date().toISOString();
 
       instSpecialSection.classList.add("hidden");
       posttestSection.classList.remove("hidden");
@@ -697,6 +779,7 @@
     submitAllBtn.addEventListener("click", async () => {
       const formData = new FormData(posttestForm);
       state.posttest = Object.fromEntries(formData.entries());
+      state.timing.post_end = new Date().toISOString();
 
       const preScore = computePreScore(state.pretest);
       const postScore = computePostScore(state.posttest);
@@ -714,7 +797,8 @@
         instruction: state.instruction,
         posttest: state.posttest,
         scores: state.scores,
-        process: state.process
+        process: state.process,
+        timing: state.timing
       };
 
       console.log("Submitting payload:", payload);
@@ -732,7 +816,7 @@
         });
 
         submitStatus.textContent =
-          "Thank you! Your responses have been submitted. You can now close this page.";
+          "Thank you. Your responses have been submitted. You can now close this page.";
       } catch (err) {
         console.error("Network error during submit:", err);
         submitStatus.textContent =
