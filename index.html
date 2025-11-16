@@ -678,44 +678,28 @@
     submitAllBtn.disabled = true;
 
     try {
-      const res = await fetch(DATA_ENDPOINT, {
+      // Fire-and-forget: avoid CORS preflight issues with no-cors + text/plain
+      await fetch(DATA_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain"
+        },
         body: JSON.stringify(payload)
       });
 
-      let success = false;
-
-      try {
-        const text = await res.text();
-        console.log("Server response:", text);
-        try {
-          const json = JSON.parse(text);
-          if (json.status === "ok") {
-            success = true;
-          }
-        } catch (eJson) {
-          // response wasn't valid JSON; that's okay, we still at least hit the endpoint
-        }
-      } catch (eRead) {
-        console.warn("Could not read response body:", eRead);
-      }
-
-      if (success) {
-        submitStatus.textContent = "Thank you! Your responses have been submitted. You can now close this page.";
-      } else {
-        // Do NOT call this an error for the learner – just a softer message
-        submitStatus.textContent =
-          "Thank you! Your responses were sent. If you're the instructor, please check the Google Sheet to confirm they appeared.";
-      }
-
+      // We can't see the response in no-cors mode, but the request
+      // will still be sent to Apps Script.
+      submitStatus.textContent =
+        "Thank you! Your responses have been submitted. You can now close this page.";
     } catch (err) {
-      console.error(err);
+      console.error("Network error during submit:", err);
       submitStatus.textContent =
         "There was a network error while submitting. Please screenshot this page and let the instructor know.";
       submitAllBtn.disabled = false;
     }
   });
+
 </script>
 
 </body>
