@@ -605,7 +605,7 @@
     </p>
 
     <form id="instruction-special-form">
-      <!-- Case 1: annotated find-the-cue -->
+      <!-- Case 1: annotated find-the-cue with check+explain -->
       <div class="q-block">
         <div class="right-controls">
           <button type="button" class="btn secondary view-table-btn">View cue table</button>
@@ -656,6 +656,9 @@
           <label><input type="radio" name="instB_c1_diag" value="GAD" /> Generalized Anxiety Disorder</label>
           <label><input type="radio" name="instB_c1_diag" value="Panic" /> Panic Disorder</label>
         </div>
+
+        <button type="button" class="btn secondary" id="c1-check-btn">Check Case 1</button>
+        <div id="c1-feedback" class="feedback-box hidden"></div>
       </div>
 
       <!-- Case 2: guided with highlighted cues -->
@@ -1007,6 +1010,9 @@
   const instBaselineForm = document.getElementById("instruction-baseline-form");
   const instSpecialForm = document.getElementById("instruction-special-form");
 
+  const c1CheckBtn = document.getElementById("c1-check-btn");
+  const c1FeedbackDiv = document.getElementById("c1-feedback");
+
   const c2SubmitBtn = document.getElementById("c2-submit-btn");
   const c2FeedbackDiv = document.getElementById("c2-feedback");
   const c2SelfExBlock = document.getElementById("c2-selfex-block");
@@ -1051,7 +1057,7 @@
   function computePostScore(post) {
     let score = 0;
     if (post.post_q1 === "GAD_only") score++;
-    if (post.post_q2 === "ASD_PTSD") score++; // updated key
+    if (post.post_q2 === "ASD_PTSD") score++;
     if (post.post_q3 === "Panic") score++;
     if (post.post_q4 === "PTSD") score++;
     if (post.post_q5 === "rule_out_trauma_disorders") score++;
@@ -1138,6 +1144,63 @@
   cueOverlay.addEventListener("click", (e) => {
     if (e.target === cueOverlay) {
       cueOverlay.classList.add("hidden");
+    }
+  });
+
+  // Special-sauce Case 1: check & explain
+  c1CheckBtn.addEventListener("click", () => {
+    const formData = new FormData(instSpecialForm);
+    const dur = formData.get("instB_c1_dur") || "";
+    const trig = formData.get("instB_c1_trig") || "";
+    const impair = formData.get("instB_c1_impair") || "";
+    const diag = formData.get("instB_c1_diag") || "";
+
+    if (!dur || !trig || !impair || !diag) {
+      c1FeedbackDiv.textContent = "Please answer all parts of Case 1 before checking.";
+      c1FeedbackDiv.classList.remove("hidden", "correct", "incorrect");
+      c1FeedbackDiv.classList.add("incorrect");
+      return;
+    }
+
+    const correctDur = (dur === "2_weeks");
+    const correctTrig = (trig === "yes");
+    const correctImp = (impair === "yes");
+    const correctDiag = (diag === "ASD");
+
+    let messages = [];
+
+    messages.push(
+      correctDur
+        ? "Duration: Correct. Two weeks fits the 3 days to 1 month range for Acute Stress Disorder."
+        : "Duration: Not quite. Two weeks fits the 3 days to 1 month range that points to Acute Stress Disorder, not longer-lasting Post-Traumatic Stress Disorder."
+    );
+
+    messages.push(
+      correctTrig
+        ? "Trigger: Correct. Jamie clearly experienced a traumatic event (robbery at work)."
+        : "Trigger: The case does include a clear traumatic event (a robbery at work)."
+    );
+
+    messages.push(
+      correctImp
+        ? "Functional impairment: Correct. Missing multiple shifts shows the symptoms are interfering with functioning."
+        : "Functional impairment: Missing multiple shifts due to fear shows functional impairment that matters for diagnosis."
+    );
+
+    messages.push(
+      correctDiag
+        ? "Diagnosis: Correct. A recent trauma plus symptoms in the 3 days to 1 month window matches Acute Stress Disorder."
+        : "Diagnosis: With a clear trauma and symptoms lasting about two weeks, Acute Stress Disorder is the best fit. Post-Traumatic Stress Disorder would require symptoms lasting more than one month."
+    );
+
+    c1FeedbackDiv.textContent = messages.join(" ");
+    c1FeedbackDiv.classList.remove("hidden");
+    c1FeedbackDiv.classList.remove("incorrect", "correct");
+
+    if (correctDur && correctTrig && correctImp && correctDiag) {
+      c1FeedbackDiv.classList.add("correct");
+    } else {
+      c1FeedbackDiv.classList.add("incorrect");
     }
   });
 
