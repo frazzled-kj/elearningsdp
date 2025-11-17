@@ -104,47 +104,13 @@
     .cue-table th {
       background: #f3f6ff;
     }
-
-    /* special sauce layout */
-    .special-layout {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-      margin-top: 1rem;
-    }
-    .mini-cue-panel {
-      align-self: flex-start;
-      position: sticky;
-      top: 0.75rem;
-      border-right: 2px solid #ccc;
-      padding-right: 12px;
-      background: #fff;
-    }
-    .mini-cue-panel h3 {
-      margin-top: 0;
-      font-size: 1rem;
-    }
-    .mini-cue-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      margin-top: 0.5rem;
-    }
-    .mini-cue-table th,
-    .mini-cue-table td {
-      border: 1px solid #eee;
-      padding: 0.25rem 0.35rem;
-      vertical-align: top;
-    }
-    .mini-cue-table th {
-      background: #f7f9ff;
-    }
-    .special-questions {
-      padding-left: 4px;
-    }
     .highlight {
       font-weight: 600;
       background: #fff4c2;
+    }
+    .right-controls {
+      text-align: right;
+      margin-top: 0.25rem;
     }
 
     /* full-table overlay */
@@ -480,9 +446,9 @@
     <span class="section-label">Part 2</span>
     <h2>Guided Lesson: Practicing Diagnostic Cues</h2>
 
-    <!-- FULL, IN-DEPTH TABLE AT TOP -->
+    <!-- SINGLE IN-DEPTH TABLE AT TOP -->
     <div class="q-block">
-      <h3>In-Depth Diagnostic Cue Table</h3>
+      <h3>Diagnostic Cue Table</h3>
       <p class="small-note">
         Use this table to see how trigger, duration, symptom pattern, and functional impairment work together
         to distinguish these disorders.
@@ -531,168 +497,134 @@
     </div>
 
     <p class="small-note">
-      Now practice using these cues in case examples. A shortened cue summary stays on the left so you do not have to scroll back up.
-      You can also open the full table again while you work.
+      Now practice using these cues in case examples. While you work through the questions, you can reopen the cue table using the button on the right.
     </p>
 
+    <div class="right-controls">
+      <button type="button" class="btn" id="show-table-btn">
+        View cue table
+      </button>
+    </div>
+
     <form id="instruction-special-form">
-      <div class="special-layout">
-        <!-- Sticky mini cue summary on the left -->
-        <aside class="mini-cue-panel">
-          <h3>Cue Summary</h3>
-          <table class="mini-cue-table">
-            <thead>
-              <tr>
-                <th>Disorder</th>
-                <th>Snapshot</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>GAD</td>
-                <td>Long (≥ 6 mo) broad, uncontrollable worry, no single trauma, everyday topics, causes impairment.</td>
-              </tr>
-              <tr>
-                <td>Panic</td>
-                <td>Sudden attacks, reach peak in minutes, fear of future attacks, avoidance, often no trauma.</td>
-              </tr>
-              <tr>
-                <td>ASD</td>
-                <td>Trauma + symptoms 3 days–1 month.</td>
-              </tr>
-              <tr>
-                <td>PTSD</td>
-                <td>Trauma + symptoms > 1 month + clear impairment.</td>
-              </tr>
-            </tbody>
-          </table>
-          <button type="button" class="btn" id="show-table-btn" style="margin-top:0.5rem;">
-            View full cue table
-          </button>
-        </aside>
+      <!-- Case 1: annotated find-the-cue -->
+      <div class="q-block">
+        <h3>Case 1 (Annotated)</h3>
+        <p class="small-note">This first case is annotated to show how each cue type appears in a vignette.</p>
+        <div class="annotated">
+          <span class="pill">Trigger</span> Jamie witnessed a robbery at work.<br/>
+          <span class="pill">Duration</span> For the past two weeks,<br/>
+          <span class="pill">Symptoms</span> she has nightmares, avoids returning to the store, and feels constantly on edge.<br/>
+          <span class="pill">Functional impairment</span> She has missed multiple shifts due to fear.
+        </div>
 
-        <!-- Scrolling questions on the right -->
-        <div class="special-questions">
-          <!-- Case 1: annotated find-the-cue -->
-          <div class="q-block">
-            <h3>Case 1 (Annotated)</h3>
-            <p class="small-note">This first case is annotated to show how each cue type appears in a vignette.</p>
-            <div class="annotated">
-              <span class="pill">Trigger</span> Jamie witnessed a robbery at work.<br/>
-              <span class="pill">Duration</span> For the past two weeks,<br/>
-              <span class="pill">Symptoms</span> she has nightmares, avoids returning to the store, and feels constantly on edge.<br/>
-              <span class="pill">Functional impairment</span> She has missed multiple shifts due to fear.
-            </div>
+        <p>Now answer some quick find-the-cue questions based on the annotations:</p>
+        <div class="options">
+          <label>How long have Jamie’s symptoms lasted?
+            <select name="instB_c1_dur">
+              <option value="">Select...</option>
+              <option value="2_weeks">Two weeks</option>
+              <option value="2_months">Two months</option>
+              <option value="8_months">Eight months</option>
+            </select>
+          </label>
+        </div>
+        <div class="options">
+          <label>Is there a traumatic event?
+            <select name="instB_c1_trig">
+              <option value="">Select...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </label>
+        </div>
+        <div class="options">
+          <label>Is her functioning impaired?
+            <select name="instB_c1_impair">
+              <option value="">Select...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </label>
+        </div>
 
-            <p>Now answer some quick find-the-cue questions based on the annotations:</p>
-            <div class="options">
-              <label>How long have Jamie’s symptoms lasted?
-                <select name="instB_c1_dur">
-                  <option value="">Select...</option>
-                  <option value="2_weeks">Two weeks</option>
-                  <option value="2_months">Two months</option>
-                  <option value="8_months">Eight months</option>
-                </select>
-              </label>
-            </div>
-            <div class="options">
-              <label>Is there a traumatic event?
-                <select name="instB_c1_trig">
-                  <option value="">Select...</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </label>
-            </div>
-            <div class="options">
-              <label>Is her functioning impaired?
-                <select name="instB_c1_impair">
-                  <option value="">Select...</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </label>
-            </div>
+        <p>Based on these cues, which diagnosis is most consistent?</p>
+        <div class="options">
+          <label><input type="radio" name="instB_c1_diag" value="ASD" /> Acute Stress Disorder</label>
+          <label><input type="radio" name="instB_c1_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
+          <label><input type="radio" name="instB_c1_diag" value="GAD" /> Generalized Anxiety Disorder</label>
+          <label><input type="radio" name="instB_c1_diag" value="Panic" /> Panic Disorder</label>
+        </div>
+      </div>
 
-            <p>Based on these cues, which diagnosis is most consistent?</p>
-            <div class="options">
-              <label><input type="radio" name="instB_c1_diag" value="ASD" /> Acute Stress Disorder</label>
-              <label><input type="radio" name="instB_c1_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
-              <label><input type="radio" name="instB_c1_diag" value="GAD" /> Generalized Anxiety Disorder</label>
-              <label><input type="radio" name="instB_c1_diag" value="Panic" /> Panic Disorder</label>
-            </div>
+      <!-- Case 2: guided with highlighted cues -->
+      <div class="q-block" id="special-case2">
+        <h3>Case 2</h3>
+        <p>
+          For the last <span class="highlight">eight months</span>, Alex experiences
+          <span class="highlight">near-daily worry</span>,
+          <span class="highlight">muscle tension</span>, and irritability.
+          His worry spans <span class="highlight">school, family, and finances</span> and feels
+          <span class="highlight">uncontrollable</span>.
+          There is <span class="highlight">no specific traumatic event</span> mentioned.
+        </p>
+
+        <p>Based on the cues you noticed, what diagnosis fits best?</p>
+        <div class="options" id="c2-options">
+          <label><input type="radio" name="instB_c2_diag" value="GAD" /> Generalized Anxiety Disorder</label>
+          <label><input type="radio" name="instB_c2_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
+          <label><input type="radio" name="instB_c2_diag" value="Panic" /> Panic Disorder</label>
+          <label><input type="radio" name="instB_c2_diag" value="ASD" /> Acute Stress Disorder</label>
+        </div>
+        <button type="button" class="btn" id="c2-submit-btn">Submit answer</button>
+
+        <div id="c2-feedback" class="feedback-box hidden"></div>
+
+        <div id="c2-selfex-block" class="hidden">
+          <p>Now that you reached a plausible answer, briefly explain your reasoning:</p>
+          <ol>
+            <li>Which cue mattered most (e.g., duration, trigger)?</li>
+            <li>Where in the vignette did you see it?</li>
+            <li>Which other diagnosis did that cue help you rule out?</li>
+          </ol>
+          <textarea id="c2-selfex" name="instB_c2_selfex"></textarea>
+          <button type="button" class="btn" id="c2-reflect-btn">Submit reflection</button>
+
+          <div id="c2-expert" class="hint hidden">
+            Expert reasoning: the long duration (more than six months), lack of a single trauma,
+            and broad, uncontrollable worry across multiple domains are the core cues for Generalized Anxiety Disorder.
           </div>
+        </div>
+      </div>
 
-          <!-- Case 2: guided with highlighted cues -->
-          <div class="q-block" id="special-case2">
-            <h3>Case 2</h3>
-            <p>
-              For the last <span class="highlight">eight months</span>, Alex experiences
-              <span class="highlight">near-daily worry</span>,
-              <span class="highlight">muscle tension</span>, and irritability.
-              His worry spans <span class="highlight">school, family, and finances</span> and feels
-              <span class="highlight">uncontrollable</span>.
-              There is <span class="highlight">no specific traumatic event</span> mentioned.
-            </p>
+      <!-- Case 3: same structure, no highlighting -->
+      <div class="q-block" id="special-case3">
+        <h3>Case 3</h3>
+        <p>
+          Sam experiences sudden episodes of intense fear that peak within minutes. These episodes occur unpredictably.
+          After several episodes, Sam avoids leaving home alone and worries frequently about having another attack.
+          No trauma is mentioned.
+        </p>
 
-            <p>Based on the cues you noticed, what diagnosis fits best?</p>
-            <div class="options" id="c2-options">
-              <label><input type="radio" name="instB_c2_diag" value="GAD" /> Generalized Anxiety Disorder</label>
-              <label><input type="radio" name="instB_c2_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
-              <label><input type="radio" name="instB_c2_diag" value="Panic" /> Panic Disorder</label>
-              <label><input type="radio" name="instB_c2_diag" value="ASD" /> Acute Stress Disorder</label>
-            </div>
-            <button type="button" class="btn" id="c2-submit-btn">Submit answer</button>
+        <p>Which diagnosis is most consistent with this description?</p>
+        <div class="options" id="c3-options">
+          <label><input type="radio" name="instB_c3_diag" value="Panic" /> Panic Disorder</label>
+          <label><input type="radio" name="instB_c3_diag" value="ASD" /> Acute Stress Disorder</label>
+          <label><input type="radio" name="instB_c3_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
+          <label><input type="radio" name="instB_c3_diag" value="GAD" /> Generalized Anxiety Disorder</label>
+        </div>
+        <button type="button" class="btn" id="c3-submit-btn">Submit answer</button>
 
-            <div id="c2-feedback" class="feedback-box hidden"></div>
+        <div id="c3-feedback" class="feedback-box hidden"></div>
 
-            <div id="c2-selfex-block" class="hidden">
-              <p>Now that you reached a plausible answer, briefly explain your reasoning:</p>
-              <ol>
-                <li>Which cue mattered most (e.g., duration, trigger)?</li>
-                <li>Where in the vignette did you see it?</li>
-                <li>Which other diagnosis did that cue help you rule out?</li>
-              </ol>
-              <textarea id="c2-selfex" name="instB_c2_selfex"></textarea>
-              <button type="button" class="btn" id="c2-reflect-btn">Submit reflection</button>
+        <div id="c3-selfex-block" class="hidden">
+          <p>Briefly describe one or two cues that led you to your choice.</p>
+          <textarea id="c3-selfex" name="instB_c3_selfex"></textarea>
+          <button type="button" class="btn" id="c3-reflect-btn">Submit reflection</button>
 
-              <div id="c2-expert" class="hint hidden">
-                Expert reasoning: the long duration (more than six months), lack of a single trauma,
-                and broad, uncontrollable worry across multiple domains are the core cues for Generalized Anxiety Disorder.
-              </div>
-            </div>
-          </div>
-
-          <!-- Case 3: same structure, no highlighting -->
-          <div class="q-block" id="special-case3">
-            <h3>Case 3</h3>
-            <p>
-              Sam experiences sudden episodes of intense fear that peak within minutes. These episodes occur unpredictably.
-              After several episodes, Sam avoids leaving home alone and worries frequently about having another attack.
-              No trauma is mentioned.
-            </p>
-
-            <p>Which diagnosis is most consistent with this description?</p>
-            <div class="options" id="c3-options">
-              <label><input type="radio" name="instB_c3_diag" value="Panic" /> Panic Disorder</label>
-              <label><input type="radio" name="instB_c3_diag" value="ASD" /> Acute Stress Disorder</label>
-              <label><input type="radio" name="instB_c3_diag" value="PTSD" /> Post-Traumatic Stress Disorder</label>
-              <label><input type="radio" name="instB_c3_diag" value="GAD" /> Generalized Anxiety Disorder</label>
-            </div>
-            <button type="button" class="btn" id="c3-submit-btn">Submit answer</button>
-
-            <div id="c3-feedback" class="feedback-box hidden"></div>
-
-            <div id="c3-selfex-block" class="hidden">
-              <p>Briefly describe one or two cues that led you to your choice.</p>
-              <textarea id="c3-selfex" name="instB_c3_selfex"></textarea>
-              <button type="button" class="btn" id="c3-reflect-btn">Submit reflection</button>
-
-              <div id="c3-expert" class="hint hidden">
-                Expert reasoning: abrupt, unexpected fear surges plus ongoing fear of future attacks and avoidance of leaving home
-                are classic cues for Panic Disorder rather than trauma-related disorders or Generalized Anxiety Disorder.
-              </div>
-            </div>
+          <div id="c3-expert" class="hint hidden">
+            Expert reasoning: abrupt, unexpected fear surges plus ongoing fear of future attacks and avoidance of leaving home
+            are classic cues for Panic Disorder rather than trauma-related disorders or Generalized Anxiety Disorder.
           </div>
         </div>
       </div>
@@ -701,11 +633,11 @@
     </form>
   </section>
 
-  <!-- FULL CUE TABLE OVERLAY (re-usable view) -->
+  <!-- CUE TABLE OVERLAY -->
   <div id="cue-table-overlay" class="overlay hidden">
     <div class="overlay-inner">
       <button class="overlay-close" id="close-table-btn" aria-label="Close">&times;</button>
-      <h3>Full Cue Table</h3>
+      <h3>Diagnostic Cue Table</h3>
       <p class="small-note">You can scroll this table while staying on your current question.</p>
       <table class="cue-table">
         <thead>
@@ -870,7 +802,7 @@
     process: {
       c2_attempts: 0,
       c2_attempt_history: [],
-      c3_hint_used: false, // kept for compatibility, but not used now
+      c3_hint_used: false, // placeholder
       table_view_count: 0
     },
     timing: {
