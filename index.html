@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 1.5rem;
       line-height: 1.5;
@@ -104,30 +104,79 @@
     .cue-table th {
       background: #f3f6ff;
     }
+
+    /* special sauce layout */
     .special-layout {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 280px 1fr;
       gap: 20px;
-      max-height: 70vh;
-      overflow: hidden;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
     }
-    .reference-panel {
+    .mini-cue-panel {
+      align-self: flex-start;
       position: sticky;
-      top: 0;
-      height: 100%;
-      overflow-y: auto;
+      top: 0.75rem;
       border-right: 2px solid #ccc;
-      padding-right: 15px;
+      padding-right: 12px;
+      background: #fff;
+    }
+    .mini-cue-panel h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+    .mini-cue-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .mini-cue-table th,
+    .mini-cue-table td {
+      border: 1px solid #eee;
+      padding: 0.25rem 0.35rem;
+      vertical-align: top;
+    }
+    .mini-cue-table th {
+      background: #f7f9ff;
     }
     .special-questions {
-      height: 100%;
-      overflow-y: auto;
-      padding: 0 5px 5px 5px;
+      padding-left: 4px;
     }
     .highlight {
       font-weight: 600;
       background: #fff4c2;
+    }
+
+    /* full-table overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 40px;
+      z-index: 1000;
+    }
+    .overlay-inner {
+      background: #fff;
+      max-width: 900px;
+      width: 95%;
+      max-height: 80vh;
+      overflow: auto;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .overlay-inner h3 {
+      margin-top: 0;
+    }
+    .overlay-close {
+      float: right;
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -162,14 +211,14 @@
     <button class="btn" id="start-btn" disabled>Start</button>
   </section>
 
-  <!-- PART 1: PRETEST (5 richer MCQs) -->
+  <!-- PART 1: PRETEST -->
   <section id="pretest-section" class="hidden">
     <span class="section-label">Part 1</span>
     <h2>Warm-up Quiz</h2>
     <p>For each question, use the cues in the vignette to choose the best answer.</p>
 
     <form id="pretest-form">
-      <!-- Pre Q1: trauma vs no trauma -->
+      <!-- Pre Q1 -->
       <div class="q-block">
         <strong>Question 1</strong>
         <p>
@@ -201,7 +250,7 @@
         </div>
       </div>
 
-      <!-- Pre Q2: duration cue -->
+      <!-- Pre Q2 -->
       <div class="q-block">
         <strong>Question 2</strong>
         <p>
@@ -229,7 +278,7 @@
         </div>
       </div>
 
-      <!-- Pre Q3: panic vs GAD / trigger cue -->
+      <!-- Pre Q3 -->
       <div class="q-block">
         <strong>Question 3</strong>
         <p>
@@ -256,7 +305,7 @@
         </div>
       </div>
 
-      <!-- Pre Q4: functional impairment cue -->
+      <!-- Pre Q4 -->
       <div class="q-block">
         <strong>Question 4</strong>
         <p>
@@ -283,7 +332,7 @@
         </div>
       </div>
 
-      <!-- Pre Q5: elimination via trauma vs no trauma -->
+      <!-- Pre Q5 -->
       <div class="q-block">
         <strong>Question 5</strong>
         <p>
@@ -347,7 +396,7 @@
         </p>
       </div>
 
-      <!-- Worked examples (no fancy titles in baseline, just regular text) -->
+      <!-- Worked examples -->
       <div class="q-block">
         <p>
           Example 1: Maria was in a car accident two weeks ago. Since then, she has intrusive memories, difficulty sleeping,
@@ -431,60 +480,103 @@
     <span class="section-label">Part 2</span>
     <h2>Guided Lesson: Practicing Diagnostic Cues</h2>
 
+    <!-- FULL, IN-DEPTH TABLE AT TOP -->
+    <div class="q-block">
+      <h3>In-Depth Diagnostic Cue Table</h3>
+      <p class="small-note">
+        Use this table to see how trigger, duration, symptom pattern, and functional impairment work together
+        to distinguish these disorders.
+      </p>
+      <table class="cue-table">
+        <thead>
+          <tr>
+            <th>Disorder</th>
+            <th>Trigger</th>
+            <th>Duration</th>
+            <th>Key Symptoms / Pattern</th>
+            <th>Functional Impairment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Generalized Anxiety Disorder</td>
+            <td>No single trauma; worry about many everyday areas</td>
+            <td>At least 6 months, most days</td>
+            <td>Broad, uncontrollable worry plus physical symptoms (e.g., tension, sleep problems)</td>
+            <td>Distress or interference with daily functioning (school, relationships, etc.)</td>
+          </tr>
+          <tr>
+            <td>Panic Disorder</td>
+            <td>Often no clear trigger; unexpected panic attacks</td>
+            <td>Recurrent attacks plus &ge; 1 month concern or behavior change</td>
+            <td>Sudden fear surges and ongoing fear of future attacks</td>
+            <td>Avoidance (e.g., of crowds or leaving home) that interferes with daily life</td>
+          </tr>
+          <tr>
+            <td>Acute Stress Disorder</td>
+            <td>Clear trauma (accident, assault, disaster)</td>
+            <td>3 days to 1 month after trauma</td>
+            <td>Intrusions, negative mood, dissociation, avoidance, arousal</td>
+            <td>Symptoms cause distress or functional problems but duration is under 1 month</td>
+          </tr>
+          <tr>
+            <td>Post-Traumatic Stress Disorder</td>
+            <td>Clear trauma</td>
+            <td>More than 1 month after trauma</td>
+            <td>Intrusions, avoidance, negative mood/cognitions, arousal</td>
+            <td>Significant functional impairment (school, work, sleep, relationships)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="small-note">
+      Now practice using these cues in case examples. A shortened cue summary stays on the left so you do not have to scroll back up.
+      You can also open the full table again while you work.
+    </p>
+
     <form id="instruction-special-form">
       <div class="special-layout">
-        <!-- Left: fixed cue table -->
-        <div class="reference-panel">
-          <h3>Diagnostic Cue Reference</h3>
-          <table class="cue-table">
+        <!-- Sticky mini cue summary on the left -->
+        <aside class="mini-cue-panel">
+          <h3>Cue Summary</h3>
+          <table class="mini-cue-table">
             <thead>
               <tr>
                 <th>Disorder</th>
-                <th>Trigger</th>
-                <th>Duration</th>
-                <th>Key Symptoms / Pattern</th>
-                <th>Functional Impairment</th>
+                <th>Snapshot</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Generalized Anxiety Disorder</td>
-                <td>No single trauma; worry about many everyday areas</td>
-                <td>At least 6 months, most days</td>
-                <td>Broad, uncontrollable worry plus physical symptoms (e.g., tension, sleep problems)</td>
-                <td>Distress or interference with daily functioning (school, relationships, etc.)</td>
+                <td>GAD</td>
+                <td>Long (≥ 6 mo) broad, uncontrollable worry, no single trauma, everyday topics, causes impairment.</td>
               </tr>
               <tr>
-                <td>Panic Disorder</td>
-                <td>Often no clear trigger; unexpected panic attacks</td>
-                <td>Recurrent attacks plus &ge; 1 month concern or behavior change</td>
-                <td>Sudden fear surges and ongoing fear of future attacks</td>
-                <td>Avoidance (e.g., of crowds or leaving home) that interferes with daily life</td>
+                <td>Panic</td>
+                <td>Sudden attacks, reach peak in minutes, fear of future attacks, avoidance, often no trauma.</td>
               </tr>
               <tr>
-                <td>Acute Stress Disorder</td>
-                <td>Clear trauma (accident, assault, disaster)</td>
-                <td>3 days to 1 month after trauma</td>
-                <td>Intrusions, negative mood, dissociation, avoidance, arousal</td>
-                <td>Symptoms cause distress or functional problems but duration is under 1 month</td>
+                <td>ASD</td>
+                <td>Trauma + symptoms 3 days–1 month.</td>
               </tr>
               <tr>
-                <td>Post-Traumatic Stress Disorder</td>
-                <td>Clear trauma</td>
-                <td>More than 1 month after trauma</td>
-                <td>Intrusions, avoidance, negative mood/cognitions, arousal</td>
-                <td>Significant functional impairment (school, work, sleep, relationships)</td>
+                <td>PTSD</td>
+                <td>Trauma + symptoms > 1 month + clear impairment.</td>
               </tr>
             </tbody>
           </table>
-        </div>
+          <button type="button" class="btn" id="show-table-btn" style="margin-top:0.5rem;">
+            View full cue table
+          </button>
+        </aside>
 
-        <!-- Right: scrolling cases -->
+        <!-- Scrolling questions on the right -->
         <div class="special-questions">
-          <!-- Case 1: annotated -->
+          <!-- Case 1: annotated find-the-cue -->
           <div class="q-block">
-            <h3>Case 1</h3>
-            <p class="small-note">This first case is annotated to show important diagnostic cues.</p>
+            <h3>Case 1 (Annotated)</h3>
+            <p class="small-note">This first case is annotated to show how each cue type appears in a vignette.</p>
             <div class="annotated">
               <span class="pill">Trigger</span> Jamie witnessed a robbery at work.<br/>
               <span class="pill">Duration</span> For the past two weeks,<br/>
@@ -531,13 +623,16 @@
             </div>
           </div>
 
-          <!-- Case 2: prediction + feedback + SE + delayed expert -->
+          <!-- Case 2: guided with highlighted cues -->
           <div class="q-block" id="special-case2">
             <h3>Case 2</h3>
             <p>
-              For the last <span class="highlight">eight months</span>, Alex experiences <span class="highlight">near-daily worry</span>,
-              <span class="highlight">muscle tension</span>, and irritability. His worry spans <span class="highlight">school, family, and finances</span>
-              and feels <span class="highlight">uncontrollable</span>. There is <span class="highlight">no specific traumatic event</span> mentioned.
+              For the last <span class="highlight">eight months</span>, Alex experiences
+              <span class="highlight">near-daily worry</span>,
+              <span class="highlight">muscle tension</span>, and irritability.
+              His worry spans <span class="highlight">school, family, and finances</span> and feels
+              <span class="highlight">uncontrollable</span>.
+              There is <span class="highlight">no specific traumatic event</span> mentioned.
             </p>
 
             <p>Based on the cues you noticed, what diagnosis fits best?</p>
@@ -606,14 +701,64 @@
     </form>
   </section>
 
-  <!-- PART 3: POSTTEST (5 richer MCQs) -->
+  <!-- FULL CUE TABLE OVERLAY (re-usable view) -->
+  <div id="cue-table-overlay" class="overlay hidden">
+    <div class="overlay-inner">
+      <button class="overlay-close" id="close-table-btn" aria-label="Close">&times;</button>
+      <h3>Full Cue Table</h3>
+      <p class="small-note">You can scroll this table while staying on your current question.</p>
+      <table class="cue-table">
+        <thead>
+          <tr>
+            <th>Disorder</th>
+            <th>Trigger</th>
+            <th>Duration</th>
+            <th>Key Symptoms / Pattern</th>
+            <th>Functional Impairment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Generalized Anxiety Disorder</td>
+            <td>No single trauma; worry about many everyday areas</td>
+            <td>At least 6 months, most days</td>
+            <td>Broad, uncontrollable worry plus physical symptoms (e.g., tension, sleep problems)</td>
+            <td>Distress or interference with daily functioning (school, relationships, etc.)</td>
+          </tr>
+          <tr>
+            <td>Panic Disorder</td>
+            <td>Often no clear trigger; unexpected panic attacks</td>
+            <td>Recurrent attacks plus &ge; 1 month concern or behavior change</td>
+            <td>Sudden fear surges and ongoing fear of future attacks</td>
+            <td>Avoidance (e.g., of crowds or leaving home) that interferes with daily life</td>
+          </tr>
+          <tr>
+            <td>Acute Stress Disorder</td>
+            <td>Clear trauma (accident, assault, disaster)</td>
+            <td>3 days to 1 month after trauma</td>
+            <td>Intrusions, negative mood, dissociation, avoidance, arousal</td>
+            <td>Symptoms cause distress or functional problems but duration is under 1 month</td>
+          </tr>
+          <tr>
+            <td>Post-Traumatic Stress Disorder</td>
+            <td>Clear trauma</td>
+            <td>More than 1 month after trauma</td>
+            <td>Intrusions, avoidance, negative mood/cognitions, arousal</td>
+            <td>Significant functional impairment (school, work, sleep, relationships)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PART 3: POSTTEST -->
   <section id="posttest-section" class="hidden">
     <span class="section-label">Part 3</span>
     <h2>Practice Quiz</h2>
     <p>Use the cues in each vignette or comparison to choose the best answer.</p>
 
     <form id="posttest-form">
-      <!-- Post Q1: GAD vs trauma -->
+      <!-- Post Q1 -->
       <div class="q-block">
         <strong>Question 1</strong>
         <p>
@@ -629,7 +774,7 @@
         </div>
       </div>
 
-      <!-- Post Q2: duration ASD vs PTSD -->
+      <!-- Post Q2 -->
       <div class="q-block">
         <strong>Question 2</strong>
         <p>
@@ -657,7 +802,7 @@
         </div>
       </div>
 
-      <!-- Post Q3: panic cue -->
+      <!-- Post Q3 -->
       <div class="q-block">
         <strong>Question 3</strong>
         <p>
@@ -673,7 +818,7 @@
         </div>
       </div>
 
-      <!-- Post Q4: PTSD duration + impairment -->
+      <!-- Post Q4 -->
       <div class="q-block">
         <strong>Question 4</strong>
         <p>
@@ -689,7 +834,7 @@
         </div>
       </div>
 
-      <!-- Post Q5: rule out via trauma cue -->
+      <!-- Post Q5 -->
       <div class="q-block">
         <strong>Question 5</strong>
         <p>
@@ -725,7 +870,8 @@
     process: {
       c2_attempts: 0,
       c2_attempt_history: [],
-      c3_hint_used: false // kept for compatibility, always false now
+      c3_hint_used: false, // kept for compatibility, but not used now
+      table_view_count: 0
     },
     timing: {
       pre_start: null,
@@ -777,6 +923,10 @@
   const c3ReflectBtn = document.getElementById("c3-reflect-btn");
   const c3ExpertDiv = document.getElementById("c3-expert");
 
+  const showTableBtn = document.getElementById("show-table-btn");
+  const cueOverlay = document.getElementById("cue-table-overlay");
+  const closeTableBtn = document.getElementById("close-table-btn");
+
   function updateStartButton() {
     startBtn.disabled = !consentCheckbox.checked;
   }
@@ -826,7 +976,7 @@
     }
   });
 
-  // Baseline practice: corrective feedback after checking
+  // Baseline practice: corrective feedback after checking all
   baselineCheckBtn.addEventListener("click", () => {
     const formData = new FormData(instBaselineForm);
     const answers = Object.fromEntries(formData.entries());
@@ -836,7 +986,6 @@
     const q3 = answers.instA_q3 || "";
     const q4 = answers.instA_q4 || "";
 
-    // Make sure all answered
     if (!q1 || !q2 || !q3 || !q4) {
       baselineFeedbackDiv.textContent = "Please answer all four cases before checking.";
       baselineFeedbackDiv.classList.remove("hidden");
@@ -845,8 +994,7 @@
     }
 
     let lines = [];
-
-    function evaluate(label, given, correctLabel, correctValue) {
+    function evalCase(label, given, correctLabel, correctValue) {
       if (given === correctValue) {
         lines.push(label + ": Correct.");
       } else {
@@ -854,10 +1002,10 @@
       }
     }
 
-    evaluate("Case A", q1, "Post-Traumatic Stress Disorder", "PTSD");
-    evaluate("Case B", q2, "Panic Disorder", "Panic");
-    evaluate("Case C", q3, "Generalized Anxiety Disorder", "GAD");
-    evaluate("Case D", q4, "Acute Stress Disorder", "ASD");
+    evalCase("Case A", q1, "Post-Traumatic Stress Disorder", "PTSD");
+    evalCase("Case B", q2, "Panic Disorder", "Panic");
+    evalCase("Case C", q3, "Generalized Anxiety Disorder", "GAD");
+    evalCase("Case D", q4, "Acute Stress Disorder", "ASD");
 
     baselineFeedbackDiv.textContent = lines.join(" ");
     baselineFeedbackDiv.classList.remove("hidden");
@@ -877,7 +1025,23 @@
     posttestSection.classList.remove("hidden");
   });
 
-  // Special-sauce Case 2: corrective cycle + self-expl + delayed expert
+  // Special-sauce: cue table overlay tracking
+  showTableBtn.addEventListener("click", () => {
+    cueOverlay.classList.remove("hidden");
+    state.process.table_view_count = (state.process.table_view_count || 0) + 1;
+  });
+
+  closeTableBtn.addEventListener("click", () => {
+    cueOverlay.classList.add("hidden");
+  });
+
+  cueOverlay.addEventListener("click", (e) => {
+    if (e.target === cueOverlay) {
+      cueOverlay.classList.add("hidden");
+    }
+  });
+
+  // Special-sauce Case 2
   let c2Attempts = 0;
   const c2Correct = "GAD";
 
@@ -914,12 +1078,11 @@
   });
 
   c2ReflectBtn.addEventListener("click", () => {
-    // they have already reached correct and written something
     c2ExpertDiv.classList.remove("hidden");
     c2ReflectBtn.disabled = true;
   });
 
-  // Special-sauce Case 3: same structure, no highlighting
+  // Special-sauce Case 3
   const c3Correct = "Panic";
 
   c3SubmitBtn.addEventListener("click", () => {
