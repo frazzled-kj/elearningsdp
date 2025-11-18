@@ -43,6 +43,9 @@
     .hidden {
       display: none;
     }
+    #cueOverlay:not(.hidden) {
+      display: flex;
+    }
     .question {
       margin: 1rem 0 1.5rem;
       padding-bottom: 0.75rem;
@@ -599,16 +602,15 @@
   </div>
 
   <!-- CUE TABLE OVERLAY (for guided condition) -->
-  <div id="cueOverlay" class="hidden" style="
+<div id="cueOverlay" class="hidden" style="
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.35);
-    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 50;
   ">
-    <div style="
+  <div style="
       background: #ffffff;
       max-width: 800px;
       max-height: 80vh;
@@ -618,15 +620,16 @@
       padding: 1rem 1.25rem;
       overflow: auto;
     ">
-      <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:0.5rem;">
-        <strong>Cue Table (Reference)</strong>
-        <button type="button" id="closeCueOverlay" class="secondary">Close</button>
-      </div>
-      <div class="cue-table-wrapper" id="overlayCueContainer">
-        <!-- table will be cloned here -->
-      </div>
+    <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:0.5rem;">
+      <strong>Cue Table (Reference)</strong>
+      <button type="button" id="closeCueOverlay" class="secondary">Close</button>
+    </div>
+    <div class="cue-table-wrapper" id="overlayCueContainer">
+      <!-- table will be cloned here -->
     </div>
   </div>
+</div>
+
 
   <!-- POST-TEST -->
   <div id="posttestScreen" class="card screen hidden">
