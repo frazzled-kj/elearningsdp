@@ -1,280 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AP Psych – Anxiety & Trauma-Related Disorders Lesson</title>
+  <meta charset="UTF-8" />
+  <title>Anxiety & Trauma Module</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      background: #f7f7fb;
+      padding: 0;
+      background: #f5f7fb;
       color: #222;
     }
-
-    .app-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
+    header {
+      background: #1f3c88;
+      color: white;
+      padding: 1rem 1.5rem;
     }
-
-    h1, h2, h3 {
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1rem;
+    }
+    .card.screen {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
       margin-top: 0;
     }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px 22px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      margin-bottom: 18px;
+    p {
+      line-height: 1.5;
     }
-
     .hidden {
       display: none;
     }
-
-    button {
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: none;
-      background: #1f6feb;
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button.secondary {
-      background: #e0e4f4;
-      color: #111;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: default;
-    }
-
     .question {
-      margin-bottom: 16px;
+      margin: 1rem 0 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e0e3ec;
     }
-
-    .question p {
-      margin: 0 0 6px 0;
+    .question:last-child {
+      border-bottom: none;
     }
-
     .options label {
       display: block;
-      margin-bottom: 4px;
-      cursor: pointer;
+      margin: 0.25rem 0;
     }
-
+    .options input[type="radio"] {
+      margin-right: 0.4rem;
+    }
     .nav-buttons {
-      margin-top: 16px;
+      margin-top: 1rem;
       display: flex;
-      gap: 8px;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
-
-    .error {
-      color: #b00020;
-      margin-top: 8px;
-      font-size: 0.9rem;
-    }
-
-    .feedback {
-      font-size: 0.9rem;
-      margin-top: 6px;
-    }
-
-    .feedback.correct {
-      color: #0b7a2a;
-    }
-
-    .feedback.incorrect {
-      color: #b00020;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 70px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      padding: 6px 8px;
+    button {
+      border: none;
       border-radius: 6px;
-      border: 1px solid #d1d5db;
-      resize: vertical;
-    }
-
-    .vignette {
-      background: #f5f7ff;
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-bottom: 8px;
-      border: 1px solid #e1e4ff;
+      padding: 0.5rem 1rem;
+      background: #1f3c88;
+      color: white;
+      cursor: pointer;
       font-size: 0.95rem;
     }
-
-    .highlight {
-      font-weight: 600;
+    button.secondary {
+      background: #e0e3ec;
+      color: #222;
     }
-
-    .small-note {
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 4px;
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
     }
-
-    .cue-table {
-      width: 100%;
-      border-collapse: collapse;
+    .error {
+      color: #b3261e;
+      margin-top: 0.5rem;
       font-size: 0.9rem;
-      margin-top: 6px;
     }
-
-    .cue-table th,
-    .cue-table td {
-      border: 1px solid #d1d5db;
-      padding: 6px 8px;
+    .feedback {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #155724;
+    }
+    .info-box {
+      background: #f0f3ff;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.95rem;
+    }
+    .cue-table-wrapper {
+      overflow-x: auto;
+      margin: 0.75rem 0 1.25rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid #d2d6e3;
+      padding: 0.4rem 0.5rem;
       vertical-align: top;
     }
-
-    .cue-table th {
-      background: #edf2ff;
-      text-align: left;
+    th {
+      background: #ebeffa;
+      font-weight: 600;
     }
-
-    .inline-btn {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #e5ecff;
-      color: #11327b;
-      border: none;
-      cursor: pointer;
+    .highlight {
+      background: #fff4c2;
     }
-
-    .view-table-row {
+    .inline-note {
+      display: inline-block;
+      padding: 0.1rem 0.35rem;
+      margin-left: 0.25rem;
+      background: #e7f3ff;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: #1f3c88;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #cdd1de;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+    .expert-box {
+      background: #f4faf5;
+      border-left: 4px solid #2e7d32;
+      padding: 0.75rem 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .view-table-inline {
       text-align: right;
-      margin-top: 4px;
-      margin-bottom: 8px;
+      margin: 0.25rem 0 0.5rem;
     }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .modal {
-      background: #fff;
-      max-width: 720px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 10px;
-      padding: 16px 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .modal-header h3 {
-      margin: 0;
-    }
-
-    .linkish {
-      color: #1f6feb;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .template-box {
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 8px 10px;
-      border: 1px dashed #cbd5f5;
-      font-size: 0.9rem;
-      margin-top: 4px;
+    .small-label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.25rem;
     }
   </style>
 </head>
 <body>
-<div class="app-container">
-  <!-- WELCOME -->
-  <div id="welcomeScreen" class="card">
-    <h1>AP Psychology: Anxiety & Trauma-Related Disorders</h1>
-    <p>In this short lesson, you will:</p>
+<header>
+  <h1>Anxiety & Trauma: Case-Based Learning</h1>
+</header>
+<main>
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="card screen">
+    <h2>Welcome</h2>
+    <p>
+      This short online module will walk you through anxiety and trauma-related disorders
+      using realistic case vignettes. You will:
+    </p>
     <ul>
-      <li>Take a quick case-based quiz to see what you already know.</li>
-      <li>Work through an online lesson on Generalized Anxiety Disorder, Panic Disorder, and Posttraumatic Stress Disorder.</li>
-      <li>Take a similar quiz again to check what you learned.</li>
+      <li>Take a brief case-based quiz</li>
+      <li>Work through a short lesson with examples and practice</li>
+      <li>Finish with another case-based quiz</li>
     </ul>
-    <p>This is designed like a typical online companion to an AP Psych unit and should take about 12–18 minutes.</p>
-    <button id="startBtn">Begin</button>
+    <p>The whole experience should take about 10–15 minutes.</p>
+    <div class="nav-buttons">
+      <button id="startBtn">Start</button>
+    </div>
   </div>
 
   <!-- PRE-TEST -->
-  <div id="pretestScreen" class="card hidden">
-    <h2>Quick Check: Case-Based Diagnosis</h2>
-    <p>For each short scenario, choose the diagnosis that best fits the description.</p>
+  <div id="pretestScreen" class="card screen hidden">
+    <h2>Case Quiz: Before the Lesson</h2>
+    <p>For each scenario, choose the diagnosis that best fits the description.</p>
 
     <div class="question">
-      <p><strong>Pre Q1.</strong> Alex has spent the last six months feeling tense and “on edge” most days. They worry about school, health, and their family even when nothing obvious is wrong. They have trouble sleeping, feel fatigued, and find it hard to concentrate. The worry feels excessive and difficult to control.</p>
+      <p><strong>Pre Q1.</strong> Neha has spent the last seven months feeling tense and “on edge” most days. She worries about grades, her younger brother’s health, money, and even small day-to-day decisions. The worry is hard to shut off and comes with muscle tension and trouble sleeping. There has been no single major trauma, but the constant worry interferes with her ability to focus in class.</p>
       <div class="options">
-        <label><input type="radio" name="pre_q1" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="pre_q1" value="PTSD"> Posttraumatic Stress Disorder</label>
         <label><input type="radio" name="pre_q1" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="pre_q1" value="None"> None of these</label>
+        <label><input type="radio" name="pre_q1" value="SAD"> Social Anxiety Disorder</label>
+        <label><input type="radio" name="pre_q1" value="Adjustment"> Adjustment Disorder with anxiety</label>
+        <label><input type="radio" name="pre_q1" value="OCD"> Obsessive-Compulsive Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Pre Q2.</strong> Sam experiences sudden surges of intense fear that peak within minutes. During these episodes, Sam’s heart races, they feel short of breath, dizzy, and worry they might be “going crazy” or dying. The attacks are unexpected, and now Sam fears having more in public places.</p>
+      <p><strong>Pre Q2.</strong> Omar sometimes feels generally stressed about school, but his biggest concern is sudden episodes that begin without warning while he is on the bus or in the cafeteria. Within minutes, his heart pounds, he feels short of breath, his hands tingle, and he fears he might lose control or die. In between episodes he worries a lot about when the next one will happen and avoids crowded places.</p>
       <div class="options">
-        <label><input type="radio" name="pre_q2" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="pre_q2" value="SpecificPhobia"> Specific Phobia (public transportation)</label>
         <label><input type="radio" name="pre_q2" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="pre_q2" value="None"> None of these</label>
-        <label><input type="radio" name="pre_q2" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="pre_q2" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="pre_q2" value="SAD"> Social Anxiety Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Pre Q3.</strong> A year after surviving a serious car accident, Maya still has frequent nightmares about the crash, avoids driving or even getting into cars, and feels jumpy when she hears screeching tires. She sometimes feels like she is back in the car again and has difficulty sleeping.</p>
+      <p><strong>Pre Q3.</strong> A few months after witnessing a shooting outside her apartment, Lila still has frequent nightmares about the event and sometimes feels like it is happening again when she hears loud bangs. She avoids walking near the location of the shooting, feels less interested in hanging out with friends, and startles easily at sudden noises. These symptoms have been present for over three months and have made it hard for her to keep up with schoolwork.</p>
       <div class="options">
+        <label><input type="radio" name="pre_q3" value="AcuteStress"> Acute Stress Disorder</label>
         <label><input type="radio" name="pre_q3" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="pre_q3" value="None"> None of these</label>
         <label><input type="radio" name="pre_q3" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="pre_q3" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="pre_q3" value="Adjustment"> Adjustment Disorder with mixed anxiety and depressed mood</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Pre Q4.</strong> Jordan often feels restless and keyed up, but their main difficulty is brief, intense episodes of fear with chest pain and a sense of losing control that seem to come “out of the blue.” Between episodes, Jordan worries a lot about having another attack and avoids places where escape would be hard.</p>
+      <p><strong>Pre Q4.</strong> During the last two months, Evan has experienced several sudden episodes where he feels an intense surge of fear, his heart races, he feels dizzy, and he worries he might collapse. The episodes reach a peak within a few minutes and then gradually fade. Some occur while he is simply watching TV at home. In between episodes, Evan worries constantly about having another one and has started avoiding long lines at the grocery store.</p>
       <div class="options">
-        <label><input type="radio" name="pre_q4" value="PTSD"> Posttraumatic Stress Disorder</label>
         <label><input type="radio" name="pre_q4" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="pre_q4" value="None"> None of these</label>
+        <label><input type="radio" name="pre_q4" value="SpecificPhobia"> Specific Phobia (crowds)</label>
+        <label><input type="radio" name="pre_q4" value="PTSD"> Posttraumatic Stress Disorder</label>
         <label><input type="radio" name="pre_q4" value="GAD"> Generalized Anxiety Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Pre Q5.</strong> For the past eight months, Lina has worried “about everything” most days, including grades, friendships, and the future. The worries feel difficult to shut off, and she notices muscle tension and poor sleep. There is no single specific trauma that triggered this pattern.</p>
+      <p><strong>Pre Q5.</strong> For the past eight months, Priya has worried almost every day about grades, friendships, the safety of her parents when they commute, and even minor scheduling issues. Her worry feels excessive compared with what is actually happening, and she finds it hard to control once it starts. She has trouble falling asleep and feels fatigued. There has been no single traumatic event, but the worry has made it harder to enjoy time with friends and stay organized with school responsibilities.</p>
       <div class="options">
+        <label><input type="radio" name="pre_q5" value="Adjustment"> Adjustment Disorder</label>
         <label><input type="radio" name="pre_q5" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="pre_q5" value="Panic"> Panic Disorder</label>
         <label><input type="radio" name="pre_q5" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="pre_q5" value="None"> None of these</label>
+        <label><input type="radio" name="pre_q5" value="SAD"> Social Anxiety Disorder</label>
       </div>
     </div>
 
@@ -284,509 +241,461 @@
     <div id="preError" class="error"></div>
   </div>
 
-  <!-- TEXT-HEAVY LESSON (baseline-like) -->
-  <div id="baselineInstruction" class="card hidden">
+  <!-- BASELINE INSTRUCTION -->
+  <div id="baselineInstruction" class="card screen hidden">
     <h2>Lesson: Anxiety & Trauma-Related Disorders</h2>
 
-    <p>
-      Modern diagnostic categories for anxiety and trauma-related disorders are largely based on criteria from the
-      <em>Diagnostic and Statistical Manual of Mental Disorders</em> (DSM). While AP Psychology does not require you to
-      memorize every line of the DSM, it does expect you to recognize common patterns across disorders and to distinguish
-      typical anxiety from clinically significant impairment.
-    </p>
+    <div class="info-box">
+      In this lesson, you will read about several anxiety and trauma-related disorders and then see how
+      the patterns show up in real-world cases.
+    </div>
 
+    <h3>Core Ideas</h3>
     <p>
-      Historically, anxiety-related symptoms were grouped more broadly under neuroses. Over time, research on
-      specific patterns of symptoms, triggers, and time courses led to more specific categories like Generalized Anxiety
-      Disorder, Panic Disorder, and Posttraumatic Stress Disorder. Knowing the history is less important than recognizing
-      that these categories were designed to capture recurring patterns in real people’s lives.
+      Anxiety and trauma-related disorders exist on a spectrum. Many people feel stress or anxiety in
+      response to life events, but not every reaction is a mental disorder. For a clinical diagnosis,
+      psychologists look for:
     </p>
+    <ul>
+      <li><strong>Core symptom pattern</strong> (e.g., persistent worry, sudden panic, intrusive memories)</li>
+      <li><strong>Time course</strong> (how long symptoms have been present)</li>
+      <li><strong>Trigger or context</strong> (trauma-related vs. free-floating vs. situation-specific)</li>
+      <li><strong>Functional impairment</strong> (impact on school, relationships, daily life)</li>
+    </ul>
 
     <h3>Generalized Anxiety Disorder (GAD)</h3>
     <p>
-      Generalized Anxiety Disorder involves excessive, hard-to-control worry about multiple domains (school, work,
-      health, family) on more days than not for at least six months. People with GAD often experience restlessness,
-      fatigue, difficulty concentrating, irritability, muscle tension, and sleep disturbance. The anxiety causes
-      significant distress or problems functioning at school, work, or in relationships.
-    </p>
-    <p>
-      GAD can be challenging to diagnose in practice because many people report “worry” without meeting full criteria.
-      Clinicians look for the combination of <strong>duration</strong> (six months or more), <strong>breadth</strong> of
-      worry (many topics, not just one test), and the degree of <strong>functional impairment</strong>. For example,
-      constantly re-checking assignments late into the night, missing social events due to worry, or repeatedly seeking
-      reassurance may indicate something beyond typical stress.
+      Generalized Anxiety Disorder involves excessive, hard-to-control worry about <em>multiple</em> areas of life
+      (such as school, family, health, or the future) occurring more days than not for at least six months.
+      Physical symptoms often include restlessness, fatigue, difficulty concentrating, irritability, muscle tension,
+      and sleep disturbance. A key feature is that the worry is <strong>broad</strong> and <strong>persistent</strong>, not tied to a single specific event.
     </p>
 
     <h3>Panic Disorder</h3>
     <p>
-      Panic Disorder is defined by recurrent, unexpected panic attacks. A panic attack is a sudden surge of intense fear
-      or discomfort that peaks within minutes and includes physical symptoms (e.g., heart palpitations, sweating,
-      trembling, shortness of breath, chest pain, dizziness) and fears of losing control, “going crazy,” or dying.
-      At least one attack is followed by a month or more of persistent concern about additional attacks and/or
-      maladaptive changes in behavior (such as avoiding exercise or public places).
-    </p>
-    <p>
-      Many people experience a single panic attack in their lifetime, especially in response to a clear stressor.
-      Panic Disorder requires a <strong>pattern</strong> of unexpected attacks plus ongoing worry and behavior changes.
-      A student who has one intense panic-like episode before a big exam is not automatically diagnosed with Panic
-      Disorder. However, if they start avoiding classes, change their daily routes to “stay safe,” or constantly scan
-      their body for signs of another attack, these changes may indicate clinically significant impairment.
+      Panic Disorder centers on recurrent, unexpected panic attacks—sudden surges of intense fear that peak within
+      minutes and involve symptoms like heart racing, shortness of breath, dizziness, or a sense of losing control.
+      After one or more attacks, people often develop persistent concern about additional attacks and may change
+      their behavior (for example, avoiding crowded places or long lines).
     </p>
 
-    <h3>Posttraumatic Stress Disorder (PTSD)</h3>
+    <h3>Posttraumatic Stress Disorder (PTSD) and Acute Stress Disorder (ASD)</h3>
     <p>
-      Posttraumatic Stress Disorder follows exposure to a traumatic event involving actual or threatened serious injury,
-      sexual violence, or death (either directly, by witnessing, or sometimes by repeated exposure to details).
-      Core features include intrusive memories or flashbacks, avoidance of reminders, negative changes in mood and
-      thinking, and changes in arousal (e.g., being jumpy, irritable, or hyper-vigilant). Symptoms last more than one
-      month and lead to clinically significant distress or impairment in functioning.
+      Both PTSD and ASD involve exposure to an actual or threatened death, serious injury, or sexual violence.
+      People may re-experience the event through intrusive memories, nightmares, or flashbacks, avoid reminders,
+      experience negative changes in mood or thinking, and feel hypervigilant or easily startled.
     </p>
     <p>
-      Not everyone who experiences a trauma develops PTSD. Some people experience an immediate but shorter-term reaction
-      called Acute Stress Disorder. Others may show resilience or different types of adjustment difficulties. For AP
-      Psych purposes, it is useful to notice: <strong>clear trauma</strong>, <strong>intrusions</strong>,
-      <strong>avoidance</strong>, <strong>mood/cognition changes</strong>, <strong>hyperarousal</strong>, and
-      <strong>functional impairment</strong> lasting more than a month.
+      The key difference is timing: <strong>Acute Stress Disorder</strong> symptoms occur within the first month
+      after the trauma. <strong>Posttraumatic Stress Disorder</strong> involves similar symptom clusters that
+      persist for more than one month and cause significant impairment in daily life.
     </p>
 
-    <h3>Common Overlaps and Edge Cases</h3>
+    <h3>Adjustment Disorder</h3>
     <p>
-      These disorders can overlap or appear together. For instance, someone might develop GAD after a traumatic event
-      or have Panic Disorder and then also begin to avoid situations that remind them of a trauma. Some symptoms, like
-      sleep problems and difficulty concentrating, are nonspecific and appear across many diagnoses.
-    </p>
-    <p>
-      In edge cases, thinking like a psychologist means asking: “Which set of criteria is <em>most clearly</em> met?”
-      In AP Psych questions, this usually means noticing one or two key cues that strongly favor one diagnosis over
-      the others (e.g., the presence of trauma, sudden surges of fear, or long-term, diffuse worry).
+      Adjustment Disorders involve emotional or behavioral symptoms that arise in response to an identifiable
+      stressor (such as a breakup, a move, or academic pressure). The reaction is more intense than would be
+      expected and causes distress or impairment, but the pattern usually does not meet full criteria for PTSD,
+      GAD, or other specific disorders. Symptoms typically begin within three months of the stressor and resolve
+      within six months after the stressor or its consequences end.
     </p>
 
-    <h3>Review Questions</h3>
-    <p>These questions check comprehension of definitions, symptom patterns, and basic distinctions. You will see whether each choice is correct or incorrect.</p>
+    <h3>Social Anxiety Disorder and Specific Phobia</h3>
+    <p>
+      <strong>Social Anxiety Disorder</strong> is marked by intense fear of one or more social situations in which an individual
+      may be scrutinized (such as giving a presentation or eating in front of others), along with avoidance or strong distress.
+      <strong>Specific Phobia</strong> involves marked fear of a specific object or situation (such as heights, needles, or dogs).
+      In both, panic-like symptoms can occur, but the fear is closely tied to the specific situation.
+    </p>
+
+    <h3>Obsessive-Compulsive Disorder (OCD)</h3>
+    <p>
+      Obsessive-Compulsive Disorder involves intrusive, unwanted thoughts (obsessions) and repetitive behaviors or mental acts
+      (compulsions) that the person feels driven to perform. Although OCD often co-occurs with anxiety, the core pattern
+      focuses on obsessions and compulsions rather than broad worry or trauma-related intrusions.
+    </p>
+
+    <h3>Worked Example 1</h3>
+    <p>
+      A student survived a serious storm that destroyed parts of their neighborhood. For the next three weeks, they had vivid
+      nightmares about the storm, avoided going near damaged buildings, and jumped at any loud wind or thunder sounds. Their
+      grades slipped slightly as they found it hard to concentrate.
+    </p>
+    <p><strong>Reasoning:</strong> There was a qualifying traumatic event (the storm). Symptoms include re-experiencing,
+      avoidance, and hyperarousal, but the time frame is under one month. This pattern fits <strong>Acute Stress Disorder</strong>
+      rather than PTSD.</p>
+
+    <h3>Worked Example 2</h3>
+    <p>
+      Another student has experienced intense fear during exams for the last year. Right before each test, their heart races
+      and they feel nauseated. However, outside of exam periods, they do not have unexpected panic attacks or ongoing worry
+      about having another attack. They attend classes and social events without major difficulty.
+    </p>
+    <p><strong>Reasoning:</strong> The anxiety is closely tied to a specific performance situation (exams), without broad worry
+      or unexpected attacks. This is more consistent with a <strong>Specific Phobia or performance-type Social Anxiety</strong>
+      than Panic Disorder or GAD.</p>
+
+    <h3>Practice Questions</h3>
+    <p class="small-label">Choose the best diagnosis for each case. You will see which answers are correct after you submit.</p>
 
     <div class="question">
-      <p><strong>Practice B1.</strong> Which diagnosis most clearly requires exposure to a traumatic event as part of the criteria?</p>
+      <p><strong>Practice 1.</strong> After moving to a new city, Jonah has felt sad and anxious about leaving his old friends.
+        For the past two months, he has had trouble sleeping and has skipped a few club meetings. However, he still attends
+        school regularly, and his symptoms began soon after the move.</p>
       <div class="options">
-        <label><input type="radio" name="base_p1" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="base_p1" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="base_p1" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="base_pr1" value="Adjustment"> Adjustment Disorder</label>
+        <label><input type="radio" name="base_pr1" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr1" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="base_pr1" value="OCD"> Obsessive-Compulsive Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Practice B2.</strong> Which diagnosis is most closely associated with recurrent, unexpected surges of intense fear that peak within minutes?</p>
+      <p><strong>Practice 2.</strong> Leo avoids giving presentations in class because he fears that others will judge him
+        harshly if he makes a mistake. Before any required presentation, he feels nauseated and shakes. He is generally
+        comfortable in small group conversations and does not have unexpected panic attacks at other times.</p>
       <div class="options">
-        <label><input type="radio" name="base_p2" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="base_p2" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="base_p2" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr2" value="SAD"> Social Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr2" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="base_pr2" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr2" value="SpecificPhobia"> Specific Phobia (heights)</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Practice B3.</strong> Which pattern best matches Generalized Anxiety Disorder rather than PTSD or Panic Disorder?</p>
+      <p><strong>Practice 3.</strong> For six weeks, Amita has washed her hands repeatedly because she keeps imagining germs
+        on doorknobs and desks. She feels temporarily relieved after washing but soon feels compelled to wash again. These
+        urges consume over an hour each day and make her late to class.</p>
       <div class="options">
-        <label><input type="radio" name="base_p3" value="Panic"> Brief, intense episodes of fear with physical symptoms</label>
-        <label><input type="radio" name="base_p3" value="PTSD"> Intrusions and avoidance following a traumatic event</label>
-        <label><input type="radio" name="base_p3" value="GAD"> Long-term, diffuse worry across many domains without a single trauma</label>
+        <label><input type="radio" name="base_pr3" value="OCD"> Obsessive-Compulsive Disorder</label>
+        <label><input type="radio" name="base_pr3" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr3" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="base_pr3" value="Adjustment"> Adjustment Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Practice B4.</strong> A student who has occasional, short-lived worry before tests that does not interfere with daily life most likely:</p>
+      <p><strong>Practice 4.</strong> Three weeks after a natural disaster, a student has trouble sleeping, feels jumpy when
+        doors slam, and avoids walking near damaged buildings. They also have repeated images of the event when they close their eyes.</p>
       <div class="options">
-        <label><input type="radio" name="base_p4" value="None"> Does not meet criteria for any of these disorders</label>
-        <label><input type="radio" name="base_p4" value="Panic"> Meets criteria for Panic Disorder</label>
-        <label><input type="radio" name="base_p4" value="GAD"> Meets criteria for Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="base_pr4" value="AcuteStress"> Acute Stress Disorder</label>
+        <label><input type="radio" name="base_pr4" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="base_pr4" value="SpecificPhobia"> Specific Phobia (storms)</label>
+        <label><input type="radio" name="base_pr4" value="None"> No disorder</label>
       </div>
     </div>
 
     <div class="nav-buttons">
-      <button id="baselineCheck">Check answers</button>
-      <button id="baselineNext" disabled>Continue</button>
+      <button id="baselinePracticeSubmit">Check answers</button>
+      <button id="baselineContinue" class="secondary" disabled>Continue to quiz</button>
     </div>
     <div id="baselineFeedback" class="feedback"></div>
   </div>
 
-  <!-- GUIDED PRACTICE LESSON -->
-  <div id="guidedInstruction" class="card hidden">
-    <h2>Lesson: Applying Diagnostic Cues in Cases</h2>
+  <!-- METACOGNITIVE ("SPECIAL SAUCE") INSTRUCTION -->
+  <div id="guidedInstruction" class="card screen hidden">
+    <h2>Lesson: Reading Cues in Anxiety & Trauma Cases</h2>
     <p>
-      In this lesson, you will use short case vignettes and a cue table to practice choosing between
-      Generalized Anxiety Disorder, Panic Disorder, and Posttraumatic Stress Disorder.
+      In this lesson, you will practice noticing key cues in case vignettes—what happened, when symptoms started,
+      which symptoms appear, and how daily life is affected.
     </p>
 
-    <h3>Diagnostic Cue Table</h3>
-    <p class="small-note">Skim this table now. You can reopen it while you are working on the cases.</p>
-    <table class="cue-table">
-      <thead>
-      <tr>
-        <th>Disorder</th>
-        <th>Core cues</th>
-        <th>Functional impairment examples</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><strong>Generalized Anxiety Disorder (GAD)</strong></td>
-        <td>
-          &bull; Excessive, hard-to-control worry about multiple domains<br>
-          &bull; Symptoms &gt; 6 months<br>
-          &bull; Restlessness, fatigue, poor concentration, muscle tension, poor sleep
-        </td>
-        <td>
-          &bull; Declining grades due to constant worry<br>
-          &bull; Difficulty relaxing enough to spend time with friends<br>
-          &bull; Sleep disruption affecting daily functioning
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Panic Disorder</strong></td>
-        <td>
-          &bull; Recurrent, unexpected panic attacks<br>
-          &bull; Sudden surges of intense fear peaking within minutes<br>
-          &bull; Physical symptoms (heart racing, shortness of breath, chest pain, dizziness)<br>
-          &bull; Persistent concern about more attacks, avoidance of triggers
-        </td>
-        <td>
-          &bull; Avoiding exercise or crowded places for fear of attacks<br>
-          &bull; Missing school or work to avoid potential attacks
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Posttraumatic Stress Disorder (PTSD)</strong></td>
-        <td>
-          &bull; Clear traumatic event involving serious injury, violence, or threat<br>
-          &bull; Intrusions (flashbacks, nightmares)<br>
-          &bull; Avoidance of reminders<br>
-          &bull; Negative mood/cognition changes<br>
-          &bull; Hyperarousal (jumpy, on guard)
-        </td>
-        <td>
-          &bull; Avoiding places or people linked to the trauma<br>
-          &bull; Difficulty sleeping or concentrating at school<br>
-          &bull; Withdrawal from relationships
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="info-box">
+      As you work, you can always refer back to the cue table. Above each case you will see a
+      <strong>“View cue table”</strong> button that opens it in a small panel.
+    </div>
 
-    <div class="small-note">You can reopen this table later using “View cue table.”</div>
-
-    <!-- Modal cue table -->
-    <div id="tableModal" class="modal-overlay">
-      <div class="modal">
-        <div class="modal-header">
-          <h3>Diagnostic Cue Table</h3>
-          <span id="closeTableModal" class="linkish">Close</span>
-        </div>
-        <table class="cue-table">
-          <thead>
+    <h3>Cue Table</h3>
+    <div class="cue-table-wrapper">
+      <table id="mainCueTable">
+        <thead>
           <tr>
             <th>Disorder</th>
-            <th>Core cues</th>
-            <th>Functional impairment examples</th>
+            <th>Typical Trigger / Context</th>
+            <th>Time Course</th>
+            <th>Core Symptom Pattern</th>
+            <th>Functional Impairment Cues</th>
           </tr>
-          </thead>
-          <tbody>
+        </thead>
+        <tbody>
           <tr>
-            <td><strong>Generalized Anxiety Disorder (GAD)</strong></td>
-            <td>
-              &bull; Excessive, hard-to-control worry about multiple domains<br>
-              &bull; Symptoms &gt; 6 months<br>
-              &bull; Restlessness, fatigue, poor concentration, muscle tension, poor sleep
-            </td>
-            <td>
-              &bull; Declining grades due to constant worry<br>
-              &bull; Difficulty relaxing enough to spend time with friends<br>
-              &bull; Sleep disruption affecting daily functioning
-            </td>
+            <td>Generalized Anxiety Disorder (GAD)</td>
+            <td>No single event; broad everyday worries (school, family, future)</td>
+            <td>Most days for ≥ 6 months</td>
+            <td>Excessive, hard-to-control worry across multiple domains</td>
+            <td>Difficulty concentrating, fatigue, sleep problems, impact on grades / daily tasks</td>
           </tr>
           <tr>
-            <td><strong>Panic Disorder</strong></td>
-            <td>
-              &bull; Recurrent, unexpected panic attacks<br>
-              &bull; Sudden surges of intense fear peaking within minutes<br>
-              &bull; Physical symptoms (heart racing, shortness of breath, chest pain, dizziness)<br>
-              &bull; Persistent concern about more attacks, avoidance of triggers
-            </td>
-            <td>
-              &bull; Avoiding exercise or crowded places for fear of attacks<br>
-              &bull; Missing school or work to avoid potential attacks
-            </td>
+            <td>Panic Disorder</td>
+            <td>Recurrent, often unexpected panic attacks; fear of more attacks</td>
+            <td>Attacks over weeks or months, plus ongoing worry about them</td>
+            <td>Sudden surges of fear, heart racing, shortness of breath, dizziness, fear of losing control</td>
+            <td>Avoids situations (lines, crowds, buses) because of fear of attacks</td>
           </tr>
           <tr>
-            <td><strong>Posttraumatic Stress Disorder (PTSD)</strong></td>
-            <td>
-              &bull; Clear traumatic event involving serious injury, violence, or threat<br>
-              &bull; Intrusions (flashbacks, nightmares)<br>
-              &bull; Avoidance of reminders<br>
-              &bull; Negative mood/cognition changes<br>
-              &bull; Hyperarousal (jumpy, on guard)
-            </td>
-            <td>
-              &bull; Avoiding places or people linked to the trauma<br>
-              &bull; Difficulty sleeping or concentrating at school<br>
-              &bull; Withdrawal from relationships
-            </td>
+            <td>Posttraumatic Stress Disorder (PTSD)</td>
+            <td>Exposure to trauma (e.g., assault, serious accident, disaster)</td>
+            <td>Symptoms last &gt; 1 month after trauma</td>
+            <td>Intrusive memories, nightmares, flashbacks, avoidance, negative mood, hypervigilance</td>
+            <td>Missing school, avoiding places, withdrawal from friends, ongoing distress</td>
           </tr>
-          </tbody>
-        </table>
-      </div>
+          <tr>
+            <td>Acute Stress Disorder (ASD)</td>
+            <td>Exposure to trauma</td>
+            <td>Symptoms within 3 days to 1 month after trauma</td>
+            <td>Similar clusters to PTSD (intrusions, avoidance, arousal)</td>
+            <td>Short-term but noticeable disruption in sleep, concentration, or routine</td>
+          </tr>
+          <tr>
+            <td>Adjustment Disorder</td>
+            <td>Identifiable non-traumatic stressor (move, breakup, academic pressure)</td>
+            <td>Begins within 3 months of stressor; usually resolves &lt; 6 months after</td>
+            <td>Distress out of proportion to stressor, but not full PTSD or GAD pattern</td>
+            <td>Drop in grades, social withdrawal, behavior changes linked to the stressor</td>
+          </tr>
+          <tr>
+            <td>Social Anxiety Disorder</td>
+            <td>Social or performance situations with possible scrutiny</td>
+            <td>Persistent (typically &gt; 6 months)</td>
+            <td>Fear of embarrassment or judgment; situational anxiety</td>
+            <td>Avoids presentations, parties, or speaking up even when important</td>
+          </tr>
+          <tr>
+            <td>Specific Phobia</td>
+            <td>Specific object or situation (heights, animals, needles, storms)</td>
+            <td>Chronic unless treated; focused on that stimulus</td>
+            <td>Marked fear when facing that object or situation</td>
+            <td>Avoids or endures with intense fear; may limit daily activities</td>
+          </tr>
+          <tr>
+            <td>Obsessive-Compulsive Disorder (OCD)</td>
+            <td>Intrusive thoughts (obsessions) and repetitive behaviors (compulsions)</td>
+            <td>Typically long-lasting without treatment</td>
+            <td>Obsessions (e.g., contamination) and rituals (e.g., repeated washing)</td>
+            <td>Consumes significant time; interferes with school, routines, or relationships</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- CASE 1 – annotated worked example -->
-    <h3>Case 1 – Walkthrough Example</h3>
-    <div class="view-table-row">
-      <button type="button" class="inline-btn" data-view-table>View cue table</button>
-    </div>
-    <div class="vignette">
-      <strong>Case 1.</strong> Taylor frequently has nightmares about a <span class="highlight">severe storm that destroyed their home</span>.
-      Taylor <span class="highlight">avoids news about storms</span>, feels <span class="highlight">detached from friends</span>, and
-      startles easily when thunder rumbles. Symptoms began soon after the disaster and have
-      <span class="highlight">persisted for over a year</span>, interfering with
-      <span class="highlight">school attendance and social life</span>.
-      <ul>
-        <li><span class="highlight">Triggering event:</span> severe storm destroying home (trauma).</li>
-        <li><span class="highlight">Timeline:</span> symptoms persisting &gt; 1 year.</li>
-        <li><span class="highlight">Symptom cluster:</span> nightmares, avoidance, detachment, hyperarousal.</li>
-        <li><span class="highlight">Functional impairment:</span> school and social life affected.</li>
-      </ul>
-    </div>
+    <!-- CASE 1: Fully worked and annotated -->
+    <h3>Case 1: Annotated Example</h3>
+    <p>
+      Read the case carefully. Notice how the cues are highlighted and labeled.
+    </p>
+    <p>
+      A student survived a serious <span class="highlight">storm that destroyed parts of their neighborhood</span>
+      <span class="inline-note">traumatic event</span>. For the next
+      <span class="highlight">three weeks</span>
+      <span class="inline-note">time frame &lt; 1 month</span>, they had vivid
+      <span class="highlight">nightmares about the storm</span>
+      <span class="inline-note">intrusions</span>, avoided going near
+      <span class="highlight">damaged buildings</span>
+      <span class="inline-note">avoidance</span>, and jumped at loud wind and thunder sounds
+      <span class="inline-note">hyperarousal</span>. Their <span class="highlight">grades slipped slightly</span>
+      <span class="inline-note">functional impact</span> as they found it hard to concentrate.
+    </p>
+    <p><strong>Diagnosis:</strong> This pattern matches <strong>Acute Stress Disorder</strong> because
+      (1) there is a qualifying trauma, (2) symptoms include intrusions, avoidance, and arousal, and
+      (3) they occur within the first month after the event.</p>
 
-    <p><strong>Direct extraction questions</strong></p>
-    <div class="question">
-      <p>1. How long have Taylor’s symptoms lasted?</p>
-      <input type="text" id="c1_extract1" placeholder="e.g., more than a year">
+    <!-- CASE 2: Prediction + feedback + self-explanation + expert -->
+    <h3>Case 2: Your Turn With Support</h3>
+    <div class="view-table-inline">
+      <button type="button" class="secondary viewCueBtn">View cue table</button>
     </div>
+    <p>
+      Maya was in a serious car accident ten weeks ago. Since then, she has had
+      <span class="highlight">repeated nightmares about the crash</span>, sometimes feels like
+      <span class="highlight">she is back in the car again when she hears tires screech</span>,
+      and tries hard to <span class="highlight">avoid driving or riding in cars</span>.
+      She has started <span class="highlight">missing classes and turning in late work</span>
+      because she refuses to travel on certain roads.
+    </p>
     <div class="question">
-      <p>2. Does the vignette mention a triggering event? If yes, what is it?</p>
-      <input type="text" id="c1_extract2" placeholder="Describe the event">
-    </div>
-    <div class="question">
-      <p>3. Which phrase indicates functional impairment?</p>
-      <input type="text" id="c1_extract3" placeholder="Quote or paraphrase the phrase">
-    </div>
-
-    <p><strong>Inference questions</strong></p>
-    <div class="question">
-      <p>4. Given the timeline, which diagnosis is least likely?</p>
+      <p><strong>Q2. Based on the cues above, which diagnosis fits best?</strong></p>
       <div class="options">
-        <label><input type="radio" name="c1_inf1" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="c1_inf1" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="c1_inf1" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="case2_diag" value="AcuteStress"> Acute Stress Disorder</label>
+        <label><input type="radio" name="case2_diag" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="case2_diag" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="case2_diag" value="Adjustment"> Adjustment Disorder with anxiety</label>
+      </div>
+      <div class="nav-buttons">
+        <button type="button" id="case2Check">Check answer</button>
+      </div>
+      <div id="case2Feedback" class="feedback"></div>
+    </div>
+
+    <div id="case2ExplainBlock" class="hidden">
+      <p><strong>Brief reflection:</strong> Write 1–2 cues from the case that led you to your answer.</p>
+      <textarea id="case2Reflection" placeholder="For example: length of time since accident, presence of nightmares and flashbacks, avoidance of driving, impact on schoolwork."></textarea>
+      <div class="nav-buttons">
+        <button type="button" id="case2SubmitReflection">Submit reflection</button>
       </div>
     </div>
+
+    <div id="case2Expert" class="expert-box hidden">
+      <strong>Expert reasoning:</strong>
+      <p>
+        There is a qualifying <em>trauma</em> (serious car accident). Symptoms include
+        intrusive memories and flashback-like experiences, avoidance of reminders (driving and certain roads),
+        and functional impairment (missing classes, late work). The timeline (about ten weeks after the event)
+        means symptoms have lasted longer than one month. Together, these cues support
+        <strong>Posttraumatic Stress Disorder</strong> rather than Acute Stress Disorder or Adjustment Disorder.
+      </p>
+    </div>
+
+    <!-- CASE 3: Similar cycle, no highlighting -->
+    <h3>Case 3: Applying the Cue Map</h3>
+    <div class="view-table-inline">
+      <button type="button" class="secondary viewCueBtn">View cue table</button>
+    </div>
+    <p>
+      For the last seven months, Daniel has worried about a wide range of issues: his grades, his younger
+      brother’s health, whether his friends secretly dislike him, and whether his future plans will work out.
+      Once he starts worrying, he finds it hard to stop. He often feels tense and tired, has trouble falling
+      asleep, and finds it difficult to concentrate in class. There has been no single major trauma, but
+      his grades have dropped and he frequently asks family members for reassurance.
+    </p>
     <div class="question">
-      <p>5. Does the presence of a clear trauma strengthen the case for PTSD?</p>
+      <p><strong>Q3. Based on the cues above, which diagnosis fits best?</strong></p>
       <div class="options">
-        <label><input type="radio" name="c1_inf2" value="No"> No</label>
-        <label><input type="radio" name="c1_inf2" value="Yes"> Yes</label>
+        <label><input type="radio" name="case3_diag" value="SAD"> Social Anxiety Disorder</label>
+        <label><input type="radio" name="case3_diag" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="case3_diag" value="Adjustment"> Adjustment Disorder with anxiety</label>
+        <label><input type="radio" name="case3_diag" value="PTSD"> Posttraumatic Stress Disorder</label>
+      </div>
+      <div class="nav-buttons">
+        <button type="button" id="case3Check">Check answer</button>
+      </div>
+      <div id="case3Feedback" class="feedback"></div>
+    </div>
+
+    <div id="case3ExplainBlock" class="hidden">
+      <p><strong>Brief reflection:</strong> Write 1–2 cues from the case that led you to your answer.</p>
+      <textarea id="case3Reflection" placeholder="For example: many domains of worry, duration &gt; 6 months, physical symptoms, functional impairment."></textarea>
+      <div class="nav-buttons">
+        <button type="button" id="case3SubmitReflection">Submit reflection</button>
       </div>
     </div>
 
-    <p><strong>Prediction question</strong></p>
-    <div class="question">
-      <p>Before choosing, identify at least one cue that supports your answer.</p>
-      <input type="text" id="c1_gate" placeholder="Write at least one cue...">
-      <div class="template-box">
-        Template: “I think this is &lt;diagnosis&gt; because of &lt;cue(s)&gt;.”
+    <div id="case3Expert" class="expert-box hidden">
+      <strong>Expert reasoning:</strong>
+      <p>
+        The worry is <em>broad</em> (grades, family, friendships, future), occurs on most days for more than
+        six months, is hard to control, and is accompanied by physical symptoms (tension, fatigue, sleep difficulty)
+        and functional impairment (drop in grades). There is no single traumatic event, and the worry is not limited
+        to one type of situation such as performance or social interaction. These cues support
+        <strong>Generalized Anxiety Disorder</strong>.
+      </p>
+    </div>
+
+    <div class="nav-buttons" style="margin-top: 1.25rem;">
+      <button type="button" id="guidedContinue" class="secondary" disabled>Continue to quiz</button>
+    </div>
+    <div id="guidedHint" class="small-label">
+      Complete both reflections to unlock the final quiz.
+    </div>
+  </div>
+
+  <!-- CUE TABLE OVERLAY (for guided condition) -->
+  <div id="cueOverlay" class="hidden" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  ">
+    <div style="
+      background: #ffffff;
+      max-width: 800px;
+      max-height: 80vh;
+      width: 95%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      padding: 1rem 1.25rem;
+      overflow: auto;
+    ">
+      <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom:0.5rem;">
+        <strong>Cue Table (Reference)</strong>
+        <button type="button" id="closeCueOverlay" class="secondary">Close</button>
       </div>
-    </div>
-
-    <div class="question">
-      <p>6. Based on the cues, what is the most appropriate diagnosis?</p>
-      <div class="options">
-        <label><input type="radio" name="g1_diag" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="g1_diag" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="g1_diag" value="PTSD"> Posttraumatic Stress Disorder</label>
+      <div class="cue-table-wrapper" id="overlayCueContainer">
+        <!-- table will be cloned here -->
       </div>
-      <button type="button" id="g1Check">Check answer</button>
-      <div id="g1Feedback" class="feedback"></div>
-    </div>
-
-    <div id="g1ReflectionBlock" class="hidden">
-      <p><strong>Explain your thinking:</strong> Briefly describe the cues you used to identify this diagnosis.</p>
-      <textarea id="g1Reflection"></textarea>
-      <button type="button" id="g1SubmitReflection">Submit explanation</button>
-      <div id="g1ReflectionFeedback" class="feedback"></div>
-    </div>
-
-    <div id="g1ExpertBlock" class="hidden small-note">
-      <p><strong>Expert explanation (Case 1):</strong> The clear traumatic event, long duration of intrusions
-        (nightmares), avoidance, withdrawal, hyperarousal, and functional impairment over a year fit Posttraumatic Stress Disorder.</p>
-      <p><strong>Cue map for this case:</strong></p>
-      <ul>
-        <li>Trauma present? → Yes → PTSD becomes likely.</li>
-        <li>Symptoms &gt; 1 month with intrusions and avoidance → consistent with PTSD.</li>
-        <li>Functional impairment in school and social life → supports a clinical diagnosis.</li>
-      </ul>
-      <p><strong>One-sentence takeaway:</strong> PTSD requires exposure to trauma plus intrusions, avoidance, and
-        functional impairment lasting more than one month.</p>
-    </div>
-
-    <!-- CASE 2 – guided practice with hint -->
-    <h3>Case 2 – Guided Practice</h3>
-    <div class="view-table-row">
-      <button type="button" class="inline-btn" data-view-table>View cue table</button>
-      <button type="button" class="inline-btn" id="c2HintBtn">Show hint</button>
-    </div>
-    <div class="vignette">
-      <strong>Case 2.</strong> Jordan often feels restless and “keyed up,” but their most distressing experiences are brief surges of intense fear that
-      peak within minutes. During these episodes Jordan’s heart races, breathing feels difficult, and they worry they
-      might be “going crazy” or dying. The episodes are unexpected, and in between Jordan spends weeks worrying about
-      having another attack and avoids crowded buses where escape might be hard.
-    </div>
-    <div id="c2HintText" class="small-note hidden">
-      Hint: Pay attention to the sudden, time-limited attacks and the ongoing worry about future episodes.
-    </div>
-
-    <div class="question">
-      <p>Before choosing, write one cue that supports your answer.</p>
-      <input type="text" id="c2_gate" placeholder="Write at least one cue...">
-      <div class="template-box">
-        Template: “I think this is &lt;diagnosis&gt; because of &lt;cue(s)&gt;.”
-      </div>
-    </div>
-
-    <div class="question">
-      <p>7. What diagnosis best fits Case 2?</p>
-      <div class="options">
-        <label><input type="radio" name="g2_diag" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="g2_diag" value="None"> None of these</label>
-        <label><input type="radio" name="g2_diag" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="g2_diag" value="PTSD"> Posttraumatic Stress Disorder</label>
-      </div>
-      <button type="button" id="g2Check">Check answer</button>
-      <div id="g2Feedback" class="feedback"></div>
-    </div>
-
-    <div id="g2ReflectionBlock" class="hidden">
-      <p><strong>Explain your thinking:</strong> Briefly describe the cues you used to identify this diagnosis.</p>
-      <textarea id="g2Reflection"></textarea>
-      <button type="button" id="g2SubmitReflection">Submit explanation</button>
-      <div id="g2ReflectionFeedback" class="feedback"></div>
-    </div>
-
-    <div id="g2ExpertBlock" class="hidden small-note">
-      <p><strong>Expert explanation (Case 2):</strong> This pattern fits Panic Disorder: recurrent, unexpected panic attacks
-        with intense physical symptoms, followed by persistent worry and avoidance that interfere with daily life.</p>
-    </div>
-
-    <!-- CASE 3 – less scaffolded practice -->
-    <h3>Case 3 – Independent Practice</h3>
-    <div class="view-table-row">
-      <button type="button" class="inline-btn" data-view-table>View cue table</button>
-      <button type="button" class="inline-btn" id="c3HintBtn">Show hint</button>
-    </div>
-    <div class="vignette">
-      <strong>Case 3.</strong> For the past eight months, Lina has worried “about everything” most days, including grades,
-      friendships, and the future. The worries feel difficult to shut off, and Lina notices muscle tension and poor sleep.
-      There is no single specific trauma that triggered this pattern, but the constant worry has made it harder to keep
-      up with schoolwork and enjoy time with friends.
-    </div>
-    <div id="c3HintText" class="small-note hidden">
-      Hint: Focus on duration, breadth of worry, physical symptoms, and functional impairment. Is there a trauma or sudden attack?
-    </div>
-
-    <div class="question">
-      <p>Before choosing, write one cue that supports your answer.</p>
-      <input type="text" id="c3_gate" placeholder="Write at least one cue...">
-      <div class="template-box">
-        Template: “I think this is &lt;diagnosis&gt; because of &lt;cue(s)&gt;.”
-      </div>
-    </div>
-
-    <div class="question">
-      <p>8. What diagnosis best fits Case 3?</p>
-      <div class="options">
-        <label><input type="radio" name="g3_diag" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="g3_diag" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="g3_diag" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="g3_diag" value="None"> None of these</label>
-      </div>
-      <button type="button" id="g3Check">Check answer</button>
-      <div id="g3Feedback" class="feedback"></div>
-    </div>
-
-    <div id="g3ReflectionBlock" class="hidden">
-      <p><strong>Explain your thinking:</strong> Briefly describe the cues you used to identify this diagnosis.</p>
-      <textarea id="g3Reflection"></textarea>
-      <button type="button" id="g3SubmitReflection">Submit explanation</button>
-      <div id="g3ReflectionFeedback" class="feedback"></div>
-    </div>
-
-    <div id="g3ExpertBlock" class="hidden small-note">
-      <p><strong>Expert explanation (Case 3):</strong> The long duration of excessive, hard-to-control worry across many
-        domains, combined with physical symptoms and functional impairment, fits Generalized Anxiety Disorder rather than
-        a trauma- or attack-based diagnosis.</p>
-    </div>
-
-    <div class="nav-buttons">
-      <button id="guidedNext">Continue</button>
     </div>
   </div>
 
   <!-- POST-TEST -->
-  <div id="posttestScreen" class="card hidden">
-    <h2>Check Your Understanding</h2>
-    <p>The vignettes below use the same three disorders. Choose the diagnosis that best fits each description.</p>
+  <div id="posttestScreen" class="card screen hidden">
+    <h2>Case Quiz: After the Lesson</h2>
+    <p>The vignettes below again ask you to choose the diagnosis that best fits each description.</p>
 
     <div class="question">
       <p><strong>Post Q1.</strong> A year after surviving a serious car accident, Maya still has frequent nightmares about
-        the crash, avoids driving, and feels jumpy when hearing screeching brakes. She sometimes feels like she is back in
-        the car again and is missing classes because of avoidance.</p>
+        the crash, avoids driving or riding in cars, and feels jumpy when she hears screeching tires. She sometimes
+        feels like she is back in the car again and has started missing classes because she refuses to travel on certain roads.</p>
       <div class="options">
-        <label><input type="radio" name="post_q1" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="post_q1" value="None"> None of these</label>
         <label><input type="radio" name="post_q1" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="post_q1" value="AcuteStress"> Acute Stress Disorder</label>
         <label><input type="radio" name="post_q1" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="post_q1" value="SpecificPhobia"> Specific Phobia (driving)</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Post Q2.</strong> Alex has spent the last six months feeling tense and “on edge” most days. They worry
-        about school, health, and their family even when nothing obvious is wrong. They have trouble sleeping, feel
-        fatigued, and find it hard to concentrate. The worry feels excessive and difficult to control.</p>
+      <p><strong>Post Q2.</strong> For the past six months, Daniel has worried almost every day about school performance,
+        his younger sister’s health, whether his friends secretly dislike him, and his future plans. The worries feel
+        excessive and hard to control once they start. He often feels tense and tired, has trouble falling asleep, and
+        finds it difficult to concentrate in class. There has been no single traumatic event, but his grades have dropped
+        and he frequently asks family members for reassurance.</p>
       <div class="options">
-        <label><input type="radio" name="post_q2" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="post_q2" value="SAD"> Social Anxiety Disorder</label>
         <label><input type="radio" name="post_q2" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="post_q2" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="post_q2" value="None"> None of these</label>
+        <label><input type="radio" name="post_q2" value="Adjustment"> Adjustment Disorder with anxiety</label>
+        <label><input type="radio" name="post_q2" value="OCD"> Obsessive-Compulsive Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Post Q3.</strong> Sam experiences sudden surges of intense fear that peak within minutes. During these
-        episodes, Sam’s heart races, they feel short of breath, dizzy, and worry they might be “going crazy” or dying.
-        The attacks are unexpected, and now Sam fears having more in public places.</p>
+      <p><strong>Post Q3.</strong> While sitting in a quiet classroom, Serena suddenly feels a wave of intense fear.
+        Her heart races, she feels short of breath and dizzy, and she worries she might faint or lose control.
+        The feelings peak within minutes and then gradually fade. Over the next month, she has several similar
+        episodes that seem to come “out of nowhere.” Between episodes she worries about the next one and begins
+        avoiding long bus rides and crowded hallways.</p>
       <div class="options">
-        <label><input type="radio" name="post_q3" value="None"> None of these</label>
-        <label><input type="radio" name="post_q3" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="post_q3" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="post_q3" value="SpecificPhobia"> Specific Phobia (crowds)</label>
         <label><input type="radio" name="post_q3" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="post_q3" value="Panic"> Panic Disorder</label>
+        <label><input type="radio" name="post_q3" value="Adjustment"> Adjustment Disorder with anxiety</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Post Q4.</strong> For the past eight months, Lina has worried “about everything” most days, including
-        grades, friendships, and the future. The worries feel difficult to shut off, and she notices muscle tension and
-        poor sleep. The worry has started to interfere with schoolwork.</p>
+      <p><strong>Post Q4.</strong> For the past nine months, Amira has worried almost every day about multiple topics:
+        exams, family finances, her grandmother’s health, and whether she is “making the right choices” about the future.
+        The worries feel difficult to control and continue even when things are going well. She has muscle tension, feels
+        fatigued, and reports that the worry often keeps her awake at night. The pattern has made it harder to focus during
+        the day and keep up with assignments.</p>
       <div class="options">
-        <label><input type="radio" name="post_q4" value="GAD"> Generalized Anxiety Disorder</label>
-        <label><input type="radio" name="post_q4" value="Panic"> Panic Disorder</label>
-        <label><input type="radio" name="post_q4" value="None"> None of these</label>
         <label><input type="radio" name="post_q4" value="PTSD"> Posttraumatic Stress Disorder</label>
+        <label><input type="radio" name="post_q4" value="GAD"> Generalized Anxiety Disorder</label>
+        <label><input type="radio" name="post_q4" value="SAD"> Social Anxiety Disorder</label>
+        <label><input type="radio" name="post_q4" value="Panic"> Panic Disorder</label>
       </div>
     </div>
 
     <div class="question">
-      <p><strong>Post Q5.</strong> Devon worries intensely for a week before major exams and has some trouble sleeping
-        during that week, but otherwise feels fine and functions well in daily life. The worries are tied to specific
-        deadlines and resolve afterward.</p>
+      <p><strong>Post Q5.</strong> In the two weeks before major exams, Leo feels more nervous than usual, checks his notes
+        repeatedly, and has a few nights of lighter sleep. After the exams are over, his sleep returns to normal, he enjoys
+        hanging out with friends again, and his grades remain strong. Outside of exam periods, he does not experience ongoing
+        worry or major changes in his daily routine.</p>
       <div class="options">
         <label><input type="radio" name="post_q5" value="GAD"> Generalized Anxiety Disorder</label>
         <label><input type="radio" name="post_q5" value="PTSD"> Posttraumatic Stress Disorder</label>
-        <label><input type="radio" name="post_q5" value="None"> None of these</label>
+        <label><input type="radio" name="post_q5" value="None"> Typical exam-related stress (no disorder)</label>
         <label><input type="radio" name="post_q5" value="Panic"> Panic Disorder</label>
       </div>
     </div>
@@ -798,95 +707,117 @@
     <div id="submitStatus" class="feedback"></div>
   </div>
 
-  <!-- FINAL -->
-  <div id="finalScreen" class="card hidden">
-    <h2>Thank you!</h2>
-    <p>Your responses have been recorded.</p>
-  </div>
-</div>
+</main>
 
 <script>
+  // ====== CONFIG ======
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxPzDgnDddCYiNI2UVS85MiT7fQ1rFT3hEuq31CeZQbcxTambqfPcmDrKfwQTSQzweF6g/exec";
 
-  // State
-  let condition = null; // "baseline" or "special_sauce"
-  let preStartTime = null;
-  let preEndTime = null;
-  let instructionStartTime = null;
-  let instructionEndTime = null;
-  let postStartTime = null;
-  let postEndTime = null;
+  const preAnswerKey = {
+    pre_q1: "GAD",
+    pre_q2: "Panic",
+    pre_q3: "PTSD",
+    pre_q4: "Panic",
+    pre_q5: "GAD"
+  };
 
-  let preAnswers = {};
-  let postAnswers = {};
+  const postAnswerKey = {
+    post_q1: "PTSD",
+    post_q2: "GAD",
+    post_q3: "Panic",
+    post_q4: "GAD",
+    post_q5: "None"
+  };
+
+  // ====== STATE ======
+  let condition = null; // "baseline" or "metacognitive"
+  let participantId = null;
   let tableViewCount = 0;
 
+  let preStartTime = null;
+  let instructionStartTime = null;
+  let postStartTime = null;
+  let totalStartTime = Date.now();
+
+  let preDurationSec = null;
+  let instructionDurationSec = null;
+  let postDurationSec = null;
+
+  const responses = {};
+
+  // ====== HELPERS ======
+  function $(id) {
+    return document.getElementById(id);
+  }
+
   function showScreen(id) {
-    ["welcomeScreen","pretestScreen","baselineInstruction","guidedInstruction","posttestScreen","finalScreen"]
-      .forEach(s => document.getElementById(s).classList.add("hidden"));
-    document.getElementById(id).classList.remove("hidden");
+    document.querySelectorAll(".screen").forEach(div => div.classList.add("hidden"));
+    $(id).classList.remove("hidden");
   }
 
-  function getSelectedValue(name) {
-    const radios = document.querySelectorAll(`input[name="${name}"]`);
-    for (const r of radios) {
-      if (r.checked) return r.value;
+  function scoreMCQ(prefix, answerKey) {
+    let score = 0;
+    Object.keys(answerKey).forEach(q => {
+      const name = q;
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      if (selected && selected.value === answerKey[q]) {
+        score += 1;
+      }
+      responses[q] = selected ? selected.value : "";
+    });
+    return score;
+  }
+
+  function allAnswered(prefix, count) {
+    for (let i = 1; i <= count; i++) {
+      const name = `${prefix}_q${i}`;
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      if (!selected) return false;
     }
-    return "";
+    return true;
   }
 
-  function computePreScore() {
-    const key = {
-      pre_q1: "GAD",
-      pre_q2: "Panic",
-      pre_q3: "PTSD",
-      pre_q4: "Panic",
-      pre_q5: "GAD"
-    };
-    let score = 0;
-    Object.keys(key).forEach(q => {
-      if (preAnswers[q] === key[q]) score++;
-    });
-    return score;
+  function randomCondition() {
+    return Math.random() < 0.5 ? "baseline" : "metacognitive";
   }
 
-  function computePostScore() {
-    const key = {
-      post_q1: "PTSD",
-      post_q2: "GAD",
-      post_q3: "Panic",
-      post_q4: "GAD",
-      post_q5: "None"
-    };
-    let score = 0;
-    Object.keys(key).forEach(q => {
-      if (postAnswers[q] === key[q]) score++;
-    });
-    return score;
+  function secondsBetween(start, end) {
+    return ((end - start) / 1000).toFixed(3);
   }
 
-  document.getElementById("startBtn").addEventListener("click", () => {
+  function generateParticipantId() {
+    const t = Date.now();
+    const r = Math.floor(Math.random() * 100000);
+    return `P_${t}_${r}`;
+  }
+
+  // ====== START FLOW ======
+  $("startBtn").addEventListener("click", () => {
+    participantId = generateParticipantId();
     preStartTime = Date.now();
     showScreen("pretestScreen");
   });
 
-  document.getElementById("preSubmit").addEventListener("click", () => {
-    const errEl = document.getElementById("preError");
-    errEl.textContent = "";
-    const qNames = ["pre_q1","pre_q2","pre_q3","pre_q4","pre_q5"];
-    for (const q of qNames) {
-      const v = getSelectedValue(q);
-      if (!v) {
-        errEl.textContent = "Please answer all questions before continuing.";
-        return;
-      }
-      preAnswers[q] = v;
+  // ====== PRETEST SUBMIT ======
+  $("preSubmit").addEventListener("click", () => {
+    $("preError").textContent = "";
+    if (!allAnswered("pre", 5)) {
+      $("preError").textContent = "Please answer all questions before continuing.";
+      return;
     }
-    preEndTime = Date.now();
 
-    // Random assignment to one of the two lesson flows
-    condition = Math.random() < 0.5 ? "baseline" : "special_sauce";
+    const preEnd = Date.now();
+    preDurationSec = secondsBetween(preStartTime, preEnd);
+
+    const preScore = scoreMCQ("pre", preAnswerKey);
+    responses.pre_mcq_score = preScore;
+
+    condition = randomCondition();
+    responses.condition = condition;
+    responses.participantId = participantId;
+
     instructionStartTime = Date.now();
+
     if (condition === "baseline") {
       showScreen("baselineInstruction");
     } else {
@@ -894,228 +825,178 @@
     }
   });
 
-  // Baseline review check
-  document.getElementById("baselineCheck").addEventListener("click", () => {
-    const fb = document.getElementById("baselineFeedback");
-    fb.classList.remove("correct","incorrect");
-
-    const answers = {
-      base_p1: "PTSD",
-      base_p2: "Panic",
-      base_p3: "GAD",
-      base_p4: "None"
+  // ====== BASELINE PRACTICE SUBMIT ======
+  $("baselinePracticeSubmit").addEventListener("click", () => {
+    const practiceAnswers = {
+      base_pr1: "Adjustment",
+      base_pr2: "SAD",
+      base_pr3: "OCD",
+      base_pr4: "AcuteStress"
     };
-    let allAnswered = true;
-    let correctCount = 0;
-    Object.keys(answers).forEach(name => {
-      const v = getSelectedValue(name);
-      if (!v) allAnswered = false;
-      if (v === answers[name]) correctCount++;
-    });
-    if (!allAnswered) {
-      fb.textContent = "Please answer all review questions before checking.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    fb.textContent = `You got ${correctCount} out of 4 questions correct. When you are ready, continue to the next quiz.`;
-    fb.classList.add("correct");
-    document.getElementById("baselineNext").disabled = false;
-  });
-
-  document.getElementById("baselineNext").addEventListener("click", () => {
-    instructionEndTime = Date.now();
-    postStartTime = Date.now();
-    showScreen("posttestScreen");
-  });
-
-  // Cue table modal + counting
-  document.querySelectorAll("[data-view-table]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      tableViewCount++;
-      document.getElementById("tableModal").style.display = "flex";
-    });
-  });
-  document.getElementById("closeTableModal").addEventListener("click", () => {
-    document.getElementById("tableModal").style.display = "none";
-  });
-
-  // Case 1 diagnosis & self-explanation
-  document.getElementById("g1Check").addEventListener("click", () => {
-    const fb = document.getElementById("g1Feedback");
-    fb.classList.remove("correct","incorrect");
-    const gate = document.getElementById("c1_gate").value.trim();
-    if (!gate) {
-      fb.textContent = "Before checking, identify at least one cue that supports your answer.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    const v = getSelectedValue("g1_diag");
-    if (!v) {
-      fb.textContent = "Please select a diagnosis first.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    if (v === "PTSD") {
-      fb.textContent = "Correct. The trauma, long duration, intrusions, avoidance, and impairment fit PTSD.";
-      fb.classList.add("correct");
-      document.getElementById("g1ReflectionBlock").classList.remove("hidden");
-    } else {
-      fb.textContent = "Not quite. Focus on the clear trauma plus long-lasting intrusions, avoidance, and functional impairment.";
-      fb.classList.add("incorrect");
-    }
-  });
-
-  document.getElementById("g1SubmitReflection").addEventListener("click", () => {
-    const txt = document.getElementById("g1Reflection").value.trim();
-    const fb = document.getElementById("g1ReflectionFeedback");
-    fb.classList.remove("correct","incorrect");
-    if (!txt) {
-      fb.textContent = "Please briefly explain the cues you used.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    fb.textContent = "Explanation submitted. Compare your reasoning with the expert explanation below.";
-    fb.classList.add("correct");
-    document.getElementById("g1ExpertBlock").classList.remove("hidden");
-  });
-
-  // Case 2 hint
-  document.getElementById("c2HintBtn").addEventListener("click", () => {
-    document.getElementById("c2HintText").classList.remove("hidden");
-  });
-
-  // Case 3 hint
-  document.getElementById("c3HintBtn").addEventListener("click", () => {
-    document.getElementById("c3HintText").classList.remove("hidden");
-  });
-
-  // Case 2 check
-  document.getElementById("g2Check").addEventListener("click", () => {
-    const fb = document.getElementById("g2Feedback");
-    fb.classList.remove("correct","incorrect");
-    const gate = document.getElementById("c2_gate").value.trim();
-    if (!gate) {
-      fb.textContent = "Before checking, identify at least one cue that supports your answer.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    const v = getSelectedValue("g2_diag");
-    if (!v) {
-      fb.textContent = "Please select a diagnosis first.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    if (v === "Panic") {
-      fb.textContent = "Correct. Sudden, time-limited attacks with physical symptoms plus ongoing worry and avoidance fit Panic Disorder.";
-      fb.classList.add("correct");
-      document.getElementById("g2ReflectionBlock").classList.remove("hidden");
-    } else {
-      fb.textContent = "Not quite. Notice the brief surges of fear and the persistent worry about future attacks.";
-      fb.classList.add("incorrect");
-    }
-  });
-
-  document.getElementById("g2SubmitReflection").addEventListener("click", () => {
-    const txt = document.getElementById("g2Reflection").value.trim();
-    const fb = document.getElementById("g2ReflectionFeedback");
-    fb.classList.remove("correct","incorrect");
-    if (!txt) {
-      fb.textContent = "Please briefly explain the cues you used.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    fb.textContent = "Explanation submitted. Compare your reasoning with the expert explanation below.";
-    fb.classList.add("correct");
-    document.getElementById("g2ExpertBlock").classList.remove("hidden");
-  });
-
-  // Case 3 check
-  document.getElementById("g3Check").addEventListener("click", () => {
-    const fb = document.getElementById("g3Feedback");
-    fb.classList.remove("correct","incorrect");
-    const gate = document.getElementById("c3_gate").value.trim();
-    if (!gate) {
-      fb.textContent = "Before checking, identify at least one cue that supports your answer.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    const v = getSelectedValue("g3_diag");
-    if (!v) {
-      fb.textContent = "Please select a diagnosis first.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    if (v === "GAD") {
-      fb.textContent = "Correct. Chronic, diffuse worry across many domains with physical symptoms and impairment fits GAD.";
-      fb.classList.add("correct");
-      document.getElementById("g3ReflectionBlock").classList.remove("hidden");
-    } else {
-      fb.textContent = "Not quite. Focus on the long duration, breadth of worry, and lack of a clear trauma or sudden attacks.";
-      fb.classList.add("incorrect");
-    }
-  });
-
-  document.getElementById("g3SubmitReflection").addEventListener("click", () => {
-    const txt = document.getElementById("g3Reflection").value.trim();
-    const fb = document.getElementById("g3ReflectionFeedback");
-    fb.classList.remove("correct","incorrect");
-    if (!txt) {
-      fb.textContent = "Please briefly explain the cues you used.";
-      fb.classList.add("incorrect");
-      return;
-    }
-    fb.textContent = "Explanation submitted. Compare your reasoning with the expert explanation below.";
-    fb.classList.add("correct");
-    document.getElementById("g3ExpertBlock").classList.remove("hidden");
-  });
-
-  document.getElementById("guidedNext").addEventListener("click", () => {
-    instructionEndTime = Date.now();
-    postStartTime = Date.now();
-    showScreen("posttestScreen");
-  });
-
-  // Post-quiz
-  document.getElementById("postSubmit").addEventListener("click", () => {
-    const errEl = document.getElementById("postError");
-    errEl.textContent = "";
-    const qNames = ["post_q1","post_q2","post_q3","post_q4","post_q5"];
-    for (const q of qNames) {
-      const v = getSelectedValue(q);
-      if (!v) {
-        errEl.textContent = "Please answer all questions before submitting.";
-        return;
+    let correct = 0;
+    let attemptedAll = true;
+    Object.keys(practiceAnswers).forEach(name => {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      if (!selected) {
+        attemptedAll = false;
+      } else if (selected.value === practiceAnswers[name]) {
+        correct++;
       }
-      postAnswers[q] = v;
+    });
+
+    if (!attemptedAll) {
+      $("baselineFeedback").textContent = "Please answer all practice questions before checking your answers.";
+      return;
     }
-    postEndTime = Date.now();
-    submitAllData();
+
+    $("baselineFeedback").textContent =
+      `You answered ${correct} out of 4 practice questions correctly. You can adjust your thinking before moving on.`;
+    $("baselineContinue").disabled = false;
   });
 
-  function submitAllData() {
-    const submitStatus = document.getElementById("submitStatus");
-    submitStatus.textContent = "";
-    submitStatus.classList.remove("correct","incorrect");
+  $("baselineContinue").addEventListener("click", () => {
+    const instEnd = Date.now();
+    instructionDurationSec = secondsBetween(instructionStartTime, instEnd);
+    postStartTime = Date.now();
+    showScreen("posttestScreen");
+  });
 
-    const preScore = computePreScore();
-    const postScore = computePostScore();
-    const gain = postScore - preScore;
+  // ====== GUIDED / METACOGNITIVE CASES ======
 
-    const preDur = preEndTime && preStartTime ? (preEndTime - preStartTime) / 1000 : "";
-    const instDur = instructionEndTime && instructionStartTime ? (instructionEndTime - instructionStartTime) / 1000 : "";
-    const postDur = postEndTime && postStartTime ? (postEndTime - postStartTime) / 1000 : "";
+  // Cue table overlay setup
+  const overlay = $("cueOverlay");
+  const overlayContainer = $("overlayCueContainer");
+  const mainCueTable = $("mainCueTable");
 
-    const payload = {
-      timestamp_client: new Date().toISOString(),
-      condition: condition || "",
-      pre_mcq_score: preScore,
-      post_mcq_score: postScore,
-      gain_mcq_score: gain,
-      pre_duration_sec: preDur,
-      instruction_duration_sec: instDur,
-      post_duration_sec: postDur,
-      table_view_count: tableViewCount
-    };
+  function openCueOverlay() {
+    if (mainCueTable && overlayContainer && overlay) {
+      overlayContainer.innerHTML = "";
+      const clone = mainCueTable.cloneNode(true);
+      overlayContainer.appendChild(clone);
+      overlay.classList.remove("hidden");
+      tableViewCount++;
+    }
+  }
+
+  document.querySelectorAll(".viewCueBtn").forEach(btn => {
+    btn.addEventListener("click", openCueOverlay);
+  });
+
+  $("closeCueOverlay").addEventListener("click", () => {
+    overlay.classList.add("hidden");
+  });
+
+  // Case 2: prediction + feedback + self-explanation + expert
+  let case2Completed = false;
+  let case3Completed = false;
+
+  $("case2Check").addEventListener("click", () => {
+    const selected = document.querySelector('input[name="case2_diag"]:checked');
+    const fb = $("case2Feedback");
+    fb.textContent = "";
+
+    if (!selected) {
+      fb.textContent = "Please choose an option before checking your answer.";
+      return;
+    }
+
+    if (selected.value === "PTSD") {
+      fb.textContent = "Correct. Now pause and explain which cues helped you decide.";
+      $("case2ExplainBlock").classList.remove("hidden");
+    } else {
+      fb.textContent = "Not quite. Look again at the timing and the presence of trauma and functional impairment, then try again.";
+    }
+  });
+
+  $("case2SubmitReflection").addEventListener("click", () => {
+    const text = $("case2Reflection").value.trim();
+    if (!text) {
+      alert("Please write 1–2 cues that guided your answer.");
+      return;
+    }
+    responses.c2_self_explanation = text;
+    responses.c2_final_diag = "PTSD";
+    $("case2Expert").classList.remove("hidden");
+    case2Completed = true;
+    if (case2Completed && case3Completed) {
+      $("guidedContinue").disabled = false;
+      $("guidedHint").textContent = "You can now continue to the final quiz.";
+    }
+  });
+
+  // Case 3
+  $("case3Check").addEventListener("click", () => {
+    const selected = document.querySelector('input[name="case3_diag"]:checked');
+    const fb = $("case3Feedback");
+    fb.textContent = "";
+
+    if (!selected) {
+      fb.textContent = "Please choose an option before checking your answer.";
+      return;
+    }
+
+    if (selected.value === "GAD") {
+      fb.textContent = "Correct. Now pause and explain which cues helped you decide.";
+      $("case3ExplainBlock").classList.remove("hidden");
+    } else {
+      fb.textContent = "Not quite. Notice how many areas of life the worry touches and how long it has lasted, then try again.";
+    }
+  });
+
+  $("case3SubmitReflection").addEventListener("click", () => {
+    const text = $("case3Reflection").value.trim();
+    if (!text) {
+      alert("Please write 1–2 cues that guided your answer.");
+      return;
+    }
+    responses.c3_self_explanation = text;
+    responses.c3_final_diag = "GAD";
+    $("case3Expert").classList.remove("hidden");
+    case3Completed = true;
+    if (case2Completed && case3Completed) {
+      $("guidedContinue").disabled = false;
+      $("guidedHint").textContent = "You can now continue to the final quiz.";
+    }
+  });
+
+  $("guidedContinue").addEventListener("click", () => {
+    const instEnd = Date.now();
+    instructionDurationSec = secondsBetween(instructionStartTime, instEnd);
+    postStartTime = Date.now();
+    showScreen("posttestScreen");
+  });
+
+  // ====== POSTTEST SUBMIT & SEND DATA ======
+  $("postSubmit").addEventListener("click", () => {
+    $("postError").textContent = "";
+    $("submitStatus").textContent = "";
+
+    if (!allAnswered("post", 5)) {
+      $("postError").textContent = "Please answer all questions before submitting.";
+      return;
+    }
+
+    const postEnd = Date.now();
+    postDurationSec = secondsBetween(postStartTime, postEnd);
+    const totalEnd = postEnd;
+    const totalDurationSec = secondsBetween(totalStartTime, totalEnd);
+
+    const postScore = scoreMCQ("post", postAnswerKey);
+    responses.post_mcq_score = postScore;
+
+    const preScore = responses.pre_mcq_score || 0;
+    responses.gain_mcq_score = postScore - preScore;
+
+    responses.timestamp_client = new Date().toISOString();
+    responses.pre_duration_sec = preDurationSec;
+    responses.instruction_duration_sec = instructionDurationSec;
+    responses.post_duration_sec = postDurationSec;
+    responses.total_duration_sec = totalDurationSec;
+    responses.table_view_count = tableViewCount;
+    responses.participantId = participantId;
+    responses.condition = condition;
+
+    $("postSubmit").disabled = true;
 
     fetch(SCRIPT_URL, {
       method: "POST",
@@ -1123,17 +1004,14 @@
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(responses)
     }).then(() => {
-      submitStatus.textContent = "Responses submitted.";
-      submitStatus.classList.add("correct");
-      showScreen("finalScreen");
-    }).catch(err => {
-      console.error(err);
-      submitStatus.textContent = "There was an error submitting your responses. Please screenshot this page.";
-      submitStatus.classList.add("incorrect");
+      $("submitStatus").textContent = "Thanks! Your responses have been submitted.";
+    }).catch(() => {
+      $("postError").textContent =
+        "There was an error submitting your responses. You can screenshot this page if needed.";
     });
-  }
+  });
 </script>
 </body>
 </html>
